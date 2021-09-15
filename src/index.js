@@ -1,19 +1,18 @@
 // Desde este archivo debes exportar una función (mdLinks).
-
 import { readFile } from 'fs';
+import * as path from 'path';
 // import { argv } from 'process';
 
-//💡 Como primer reto, puedes tratar de leer un solo archivo con una ruta fija e imprimir su contenido en la consola con un console.log. 
 
+// ---------- lee el contenido dentro de una ruta --------------- //
+readFile('../validator/validator.md', 'utf-8', (error, data) => {
+    if(error) {
+        console.log(`Error: ${error} `);
+    } else {
+        console.log(data);
+    }
+});
 
-// lee el contenido dentro de una ruta
-export const discoverFile = () => {
-    readFile('../validator/validator.md', 'utf-8', (error, data) => {
-        if(error) {
-            console.log(`Error: ${error} `);
-        } else {
-            console.log(data);
-        }
-    });
-} 
-discoverFile();
+// ---------- lee la extención de un path --------------- //
+const extension = path.extname('../validator/validator.md');
+console.log(`La extensión del archivo es => ${extension}`);

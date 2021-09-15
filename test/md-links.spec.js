@@ -1,5 +1,5 @@
-const mdLinks = require('../');
-
+// const mdLinks = require('../');
+// import { mdLinks } from '../';
 
 describe('mdLinks', () => {
 
