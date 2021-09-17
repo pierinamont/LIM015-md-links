@@ -18,6 +18,7 @@ module.exports = {
         js: 'always',
       },
     ],
+    'linebreak-style': 0,
   },
   plugins: [
     'jest',
