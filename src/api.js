@@ -17,9 +17,9 @@ const isAdirectory = (track) => {
   stat(track, (error, stats) => {
     if (error) {
       console.error(error);
+    } else {
+      console.log(stats.isDirectory()); // true o false
     }
-    // chequea si el path es o no un directorio
-    console.log(stats.isDirectory()); // true o false
   });
 };
 
