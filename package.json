@@ -6,6 +6,7 @@
     "@babel/core": "^7.15.5",
     "@babel/preset-env": "^7.15.6",
     "babel-eslint": "^10.1.0",
+    "cross-env": "^7.0.3",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.24.2",
@@ -18,7 +19,8 @@
   },
   "scripts": {
     "test": "jest --verbose --coverage",
-    "lint": "eslint . --fix"
+    "lint": "eslint . --fix",
+    "build" : "cross-env NODE_ENV = paquete web de producción --config build / webpack.config.js"
   },
   "repository": {
     "type": "git",

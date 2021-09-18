@@ -19,6 +19,7 @@ module.exports = {
       },
     ],
     'linebreak-style': 0,
+    'import/prefer-default-export': false,
   },
   plugins: [
     'jest',
