@@ -12,6 +12,10 @@ console.log(isAnExistingPath(directPath)); // prueba
 const isAbsolutePath = (track) => path.isAbsolute(track); // true o false
 console.log(isAbsolutePath(directPath)); // prueba
 
+// --------------------- Para convertir el path en absoluto ------------------------ //
+// ...
+// ...
+
 // --------------------- Para saber si el path es un directorio -------------------- //
 const isAdirectory = (track) => {
   stat(track, (error, stats) => {
@@ -24,6 +28,10 @@ const isAdirectory = (track) => {
 };
 
 isAdirectory(directPath); // prueba
+
+// -------------------- Para ingresar al directorio y recorrerlo ------------------- //
+// ...
+// ...
 
 // --------------------- Para saber la extensión de un archivo -------------------- //
 const isMdExtension = (track) => path.extname(track); // retorna la extensión
