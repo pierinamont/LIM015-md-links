@@ -1,4 +1,4 @@
-import { existsSync, stat } from 'fs';
+import { existsSync, stat, readFile } from 'fs';
 import * as path from 'path';
 // import chalk from 'chalk'; // para añadir color al texto
 
@@ -24,3 +24,19 @@ const isAdirectory = (track) => {
 };
 
 isAdirectory(directPath); // prueba
+
+// --------------------- Para saber la extensión de un archivo -------------------- //
+const isMdExtension = (track) => path.extname(track); // retorna la extensión
+console.log(isMdExtension(directPath)); // prueba
+
+// --------------------- Para leer un archivo -------------------- //
+const readFileMd = (track) => {
+  readFile(track, 'utf-8', (error, data) => {
+    if (error) {
+      console.log(`Error: ${error} `);
+    } else {
+      console.log(data); // Muestra la data que hay dentro del archivo
+    }
+  });
+};
+readFileMd(directPath); // Prueba
