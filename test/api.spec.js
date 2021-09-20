@@ -1,11 +1,12 @@
-// import { isAnExistingPath } from './api.js';
-// , isAbsolutePath, convertToAbsolute, isAdirectory, readDirectory, isMdExtension, readFileMd
+
+// import { FLIPPED_ALIAS_KEYS } from '@babel/types';
 import { isAnExistingPath, isAbsolutePath,
   convertToAbsolute, isAdirectory } from '../src/api.js'
 
 const track = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator';
 const failTrack = '../validator/validator.md';
 const directory = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated';
+const justFile = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator.md';
 
 describe('isAnExistingPath', () => {
   it('Debe ser una función', () => {
@@ -44,12 +45,17 @@ describe('isAdirectory', () => {
   it('Debe ser una función', () => {
     expect(typeof isAdirectory).toBe('function');
   });
-  it('Debe validar si el path es un directorio', () => {
-   // Did you forget to wait for something async in your test?
-   // chequear!!!!!
-    expect(isAdirectory(directory)).toBe(true);
-  });
+  it('Debe validar si el path es un directorio', () => isAdirectory(directory)
+  .then((stats) => {
+    expect(stats.isDirectory()).toBe(true);
+  }))
+  it('Debe validar si el path es un directorio', () => isAdirectory(justFile)
+  .then((stats) => {
+    expect(stats.isDirectory()).toBe(false);
+  }))
 });
+
+
 
 
   
