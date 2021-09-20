@@ -2,7 +2,7 @@
 // import { FLIPPED_ALIAS_KEYS } from '@babel/types';
 import { isAnExistingPath, isAbsolutePath,
   convertToAbsolute, isAdirectory, isMdExtension,
-  readFileMd } from '../src/api.js';
+  readDirectory, readFileMd } from '../src/api.js';
 
 
 // constantes
@@ -42,7 +42,8 @@ describe('convertToAbsolute', () => {
     expect(typeof convertToAbsolute).toBe('function');
   });
   it('Debe convertir ruta a absoluta', () => {
-    expect(convertToAbsolute(failTrack)).toEqual('C:\\Users\\user\\Desktop\\LABORATORIA\\validator\\validator.md');
+    const content = 'C:\\Users\\user\\Desktop\\LABORATORIA\\validator\\validator.md';
+    expect(convertToAbsolute(failTrack)).toEqual(content);
   });
 });
 
@@ -58,8 +59,16 @@ describe('isAdirectory', () => {
 });
 
 // readDirectory // 
-// ..
-// ..
+describe('readDirectory', () => {
+  it('Debe ser una función', () => {
+    expect(typeof readDirectory).toBe('function');
+  });
+  it('Debe validar si el path es un directorio', () => {
+    console.log(readDirectory(track))
+    const content =  [ 'file.md', 'validator.md', 'validator_duplicated' ];
+    expect(readDirectory(track)).toEqual(content)});
+});
+
 
 describe('isMdExtension', () => {
   it('Debe ser una función', () => {
@@ -77,7 +86,7 @@ describe('readFileMd', () => {
     expect(typeof readFileMd).toBe('function');
   });
   it('Debe validar si el path es un directorio', () => {
-     expect(readFileMd(justFile))
-     .toEqual('[Markdown](https://es.wikipedia.org/wiki/Markdown) es un lenguaje de marcado')});
+     const content = '[Markdown](https://es.wikipedia.org/wiki/Markdown) es un lenguaje de marcado';
+     expect(readFileMd(justFile)).toEqual(content);
+  });
 });
-
