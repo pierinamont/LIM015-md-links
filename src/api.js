@@ -19,17 +19,31 @@ export const convertToAbsolute = (track) => path.resolve(track);
 // console.log(convertToAbsolute(directPath), chalk.blue('=> de relativa a absoluta')); // prueba
 
 // --------------------- Para saber si el path es un directorio -------------------- //
-export const isAdirectory = (track) => {
-  stat(track, (error, stats) => {
-    if (error) {
-      console.error('error para saber si el path es un directorio', error);
-    } else {
-      console.log(stats.isDirectory()); // true o false
-    }
-  });
-};
+// export const isAdirectory = (track) => {
+//   stat(track, (error, stats) => {
+//     if (error) {
+//       console.error('error para saber si el path es un directorio', error);
+//     } else {
+//       console.log(stats.isDirectory()); // true o false
+//     }
+//   });
+// };
 
-// isAdirectory(directPath); // prueba
+// isAdirectory('C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated'); // prueba
+
+export const isAdirectory = (track) =>  new Promise((resolve, reject) => {
+  stat(track, (error, stats) => {
+     if (error) {
+       console.error('error para saber si el path es un directorio', error);
+       reject(error);
+     } else {
+       console.log(stats.isDirectory()); // true o false
+       resolve(stats);
+     }
+   });
+ });
+
+ // isAdirectory('C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated'); // prueba
 
 // --------------------------- Para leer un directorio ------------------------------ //
 export const readDirectory = (track) => {
