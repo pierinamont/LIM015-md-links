@@ -1,7 +1,7 @@
 
 // import { FLIPPED_ALIAS_KEYS } from '@babel/types';
 import { isAnExistingPath, isAbsolutePath,
-  convertToAbsolute, isAdirectory } from '../src/api.js'
+  convertToAbsolute, isAdirectory, isMdExtension } from '../src/api.js'
 
 const track = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator';
 const failTrack = '../validator/validator.md';
@@ -45,17 +45,28 @@ describe('isAdirectory', () => {
   it('Debe ser una función', () => {
     expect(typeof isAdirectory).toBe('function');
   });
-  it('Debe validar si el path es un directorio', () => isAdirectory(directory)
-  .then((stats) => {
-    expect(stats.isDirectory()).toBe(true);
-  }))
-  it('Debe validar si el path es un directorio', () => isAdirectory(justFile)
-  .then((stats) => {
-    expect(stats.isDirectory()).toBe(false);
-  }))
+  it('Debe validar si el path es un directorio', () => {
+     expect(isAdirectory(directory)).toBe(true)});
+
+  it('Debe validar si el path es un directorio', () => {
+    expect(isAdirectory(justFile)).toBe(false)});
 });
 
+// readDirectory // 
+// ..
+// ..
 
+describe('isMdExtension', () => {
+  it('Debe ser una función', () => {
+    expect(typeof isMdExtension).toBe('function');
+  });
+  it('Debe validar que es un archivo .md', () => {
+     expect(isMdExtension(justFile)).toBe(true)});
 
-
+  it('Debe validar que no es archivo .md', () => {
+  expect(isMdExtension(directory)).toBe(false)});
+});
   
+// readFileMd // 
+// ..
+// ..

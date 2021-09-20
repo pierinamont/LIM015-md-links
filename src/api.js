@@ -1,10 +1,11 @@
+import { SSL_OP_MICROSOFT_SESS_ID_BUG } from 'constants';
 import {
-  existsSync, stat, readFile, readdir,
+  existsSync, statSync, readFileSync, readdirSync,
 } from 'fs';
 import * as path from 'path';
-import chalk from 'chalk'; // para añadir color al texto
+// import chalk from 'chalk'; // para añadir color al texto
 
-// const directPath = '../validator'; // prueba
+const directPath = '../validator'; // prueba
 
 // ---------------------- Para saber si el path existe ----------------------------- //
 export const isAnExistingPath = (track) => existsSync(track); // true o false
@@ -19,66 +20,31 @@ export const convertToAbsolute = (track) => path.resolve(track);
 // console.log(convertToAbsolute(directPath), chalk.blue('=> de relativa a absoluta')); // prueba
 
 // --------------------- Para saber si el path es un directorio -------------------- //
-// export const isAdirectory = (track) => {
-//   stat(track, (error, stats) => {
-//     if (error) {
-//       console.error('error para saber si el path es un directorio', error);
-//     } else {
-//       console.log(stats.isDirectory()); // true o false
-//     }
-//   });
-// };
-
-// isAdirectory('C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated'); // prueba
-
-export const isAdirectory = (track) =>  new Promise((resolve, reject) => {
-  stat(track, (error, stats) => {
-     if (error) {
-       console.error('error para saber si el path es un directorio', error);
-       reject(error);
-     } else {
-       console.log(stats.isDirectory()); // true o false
-       resolve(stats);
-     }
-   });
- });
-
- // isAdirectory('C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated'); // prueba
+ export const isAdirectory = (track) => statSync(track).isDirectory();
+// console.log(isAdirectory('C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated')); // prueba
 
 // --------------------------- Para leer un directorio ------------------------------ //
-export const readDirectory = (track) => {
-  readdir(track, (err, files) => {
-    if (err) {
-      console.log('error para leer un directorio', err);
-    } else {
-      files.forEach((file) => {
-        console.log(file, chalk.blue('=> esto hay dentro de una carpeta'));
-      });
-    }
-  });
-};
-// readDirectory(directPath);
+export const readDirectory = (track) => readdirSync(track);
+// console.log(readDirectory(directPath));
 
 // --------------------------- Para recorrer directorio ? ------------------------------ //
 // ...
 // ...
 
-// --------------------- Para saber la extensión de un archivo -------------------- //
-export const isMdExtension = (track) => path.extname(track); // retorna la extensión
-// console.log(isMdExtension(directPath)); // prueba
+// --------------------- Para validar si es una extensión de un archivo md -------------------- //
+export const isMdExtension = (track) => {
+  const isMdExtension = path.extname(track);
+  if (isMdExtension === '.md') {
+    return true;
+  } else {
+    return false;
+  }
+}
+console.log(isMdExtension(directPath)); // prueba
 
 // ----------------------- Para leer un archivo md -------------------------------- //
-export const readFileMd = (track) => {
-  readFile(track, 'utf-8', (error, data) => {
-    if (error) {
-      console.log(chalk.red(`Error en archivo md: ${error} `));
-    } else {
-      console.log(data); // Muestra la data que hay dentro del archivo
-    }
-  });
-};
+export const readFileMd = (track) => readFileSync(track, 'utf8')
 // console.log(readFileMd(directPath)); // Prueba
-
 
 // --------------------------- Para ver si hay links ------------------------------ //
 // ...
