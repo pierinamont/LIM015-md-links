@@ -1,12 +1,15 @@
 // import { isAnExistingPath } from './api.js';
 // , isAbsolutePath, convertToAbsolute, isAdirectory, readDirectory, isMdExtension, readFileMd
-import * as api from '../src/api.js'
+import { isAnExistingPath } from '../src/api.js'
 
-const track = '../validator/validator.md';
+const track = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator';
 
 describe('isAnExistingPath', () => {
-    it('Debe validar si el path existe', () => {
-      expect(api.isAnExistingPath(track).toBe(true))
-    });
+  it('Debe ser una función', () => {
+    expect(typeof isAnExistingPath).toBe('function');
   });
+  it('Debe validar si el path existe', () => {
+    expect(isAnExistingPath(track)).toBe(true);
+  });
+});
   

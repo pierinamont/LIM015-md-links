@@ -4,19 +4,19 @@ import {
 import * as path from 'path';
 import chalk from 'chalk'; // para añadir color al texto
 
-const directPath = '../validator'; // prueba
+// const directPath = '../validator'; // prueba
 
 // ---------------------- Para saber si el path existe ----------------------------- //
 export const isAnExistingPath = (track) => existsSync(track); // true o false
-console.log(isAnExistingPath(directPath)); // prueba
+// console.log(isAnExistingPath(directPath)); // prueba
 
 // -------------------- Para saber si el path es absoluto -------------------------- //
 export const isAbsolutePath = (track) => path.isAbsolute(track); // true o false
-console.log(isAbsolutePath(directPath)); // prueba
+// console.log(isAbsolutePath(directPath)); // prueba
 
 // --------------------- Para convertir el path en absoluto ------------------------ //
 export const convertToAbsolute = (track) => path.resolve(track);
-console.log(convertToAbsolute(directPath), chalk.blue('=> de relativa a absoluta')); // prueba
+// console.log(convertToAbsolute(directPath), chalk.blue('=> de relativa a absoluta')); // prueba
 
 // --------------------- Para saber si el path es un directorio -------------------- //
 export const isAdirectory = (track) => {
@@ -29,7 +29,7 @@ export const isAdirectory = (track) => {
   });
 };
 
-isAdirectory(directPath); // prueba
+// isAdirectory(directPath); // prueba
 
 // --------------------------- Para leer un directorio ------------------------------ //
 export const readDirectory = (track) => {
@@ -43,7 +43,7 @@ export const readDirectory = (track) => {
     }
   });
 };
-readDirectory(directPath);
+// readDirectory(directPath);
 
 // --------------------------- Para recorrer directorio ? ------------------------------ //
 // ...
@@ -51,7 +51,7 @@ readDirectory(directPath);
 
 // --------------------- Para saber la extensión de un archivo -------------------- //
 export const isMdExtension = (track) => path.extname(track); // retorna la extensión
-console.log(isMdExtension(directPath)); // prueba
+// console.log(isMdExtension(directPath)); // prueba
 
 // ----------------------- Para leer un archivo md -------------------------------- //
 export const readFileMd = (track) => {
@@ -63,7 +63,7 @@ export const readFileMd = (track) => {
     }
   });
 };
-console.log(readFileMd(directPath)); // Prueba
+// console.log(readFileMd(directPath)); // Prueba
 
 // --------------------------- Para extraer links ------------------------------ //
 // ...

@@ -2,8 +2,12 @@
   "name": "md-links",
   "version": "0.1.0",
   "type": "module",
+  "jest": {
+    "verbose": true
+  },
   "devDependencies": {
     "@babel/core": "^7.15.5",
+    "@babel/plugin-transform-modules-commonjs": "^7.15.4",
     "@babel/preset-env": "^7.15.6",
     "babel-eslint": "^10.1.0",
     "cross-env": "^7.0.3",
@@ -17,10 +21,18 @@
   "directories": {
     "test": "jest"
   },
+  "plugins": [
+    [
+      "@babel/plugin-transform-modules-commonjs",
+      {
+        "allowTopLevelThis": true
+      }
+    ]
+  ],
   "scripts": {
     "test": "jest --verbose --coverage",
     "lint": "eslint . --fix",
-    "build" : "cross-env NODE_ENV = paquete web de producción --config build / webpack.config.js"
+    "build": "cross-env NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "repository": {
     "type": "git",
