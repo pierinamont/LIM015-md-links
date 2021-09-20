@@ -1,4 +1,4 @@
-import { SSL_OP_MICROSOFT_SESS_ID_BUG } from 'constants';
+// import { SSL_OP_MICROSOFT_SESS_ID_BUG } from 'constants';
 import {
   existsSync, statSync, readFileSync, readdirSync,
 } from 'fs';

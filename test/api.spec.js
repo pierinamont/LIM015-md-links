@@ -1,12 +1,17 @@
 
 // import { FLIPPED_ALIAS_KEYS } from '@babel/types';
 import { isAnExistingPath, isAbsolutePath,
-  convertToAbsolute, isAdirectory, isMdExtension } from '../src/api.js'
+  convertToAbsolute, isAdirectory, isMdExtension,
+  readFileMd } from '../src/api.js';
 
+
+// constantes
 const track = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator';
 const failTrack = '../validator/validator.md';
 const directory = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated';
-const justFile = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator.md';
+const justFile = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\file.md';
+
+// -------------------------- tests ----------------------------- //
 
 describe('isAnExistingPath', () => {
   it('Debe ser una función', () => {
@@ -67,6 +72,12 @@ describe('isMdExtension', () => {
   expect(isMdExtension(directory)).toBe(false)});
 });
   
-// readFileMd // 
-// ..
-// ..
+describe('readFileMd', () => {
+  it('Debe ser una función', () => {
+    expect(typeof readFileMd).toBe('function');
+  });
+  it('Debe validar si el path es un directorio', () => {
+     expect(readFileMd(justFile))
+     .toEqual('[Markdown](https://es.wikipedia.org/wiki/Markdown) es un lenguaje de marcado')});
+});
+
