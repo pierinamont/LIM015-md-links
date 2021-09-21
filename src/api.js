@@ -30,16 +30,11 @@ const getFilesFromDirectory = (track) => {
   // si es directorio
   if (isAdirectory(track)) {
     // recorrer archivos dentro
-    console.log(readDirectory(track))
     readDirectory(track).forEach((files) => {
     const resolvePath = path.resolve(track + '/' + files); // ruta resuelta
-    // path.join(track + '/' + files), 'este es el path join');
-
     const directoryFiles = getFilesFromDirectory(resolvePath);
-    console.log(directoryFiles)
-    // directoryFiles.concat(arrayFiles);
-
-    // console.log(directoryFiles)
+   // console.log(directoryFiles, 'este es un console');
+    arrayFiles.push(directoryFiles);
     });
     
   } else {
