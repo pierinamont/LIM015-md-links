@@ -30,23 +30,30 @@ export const readDirectory = (track) => readdirSync(track);
 
 // --------------------------- Para recorrer directorio  ------------------------------ //
 const navigateDirectory = (track) => {
-  let newArray = [];
-  readdir(track, (error, files) => {
-    if (error) {
-      console.log(chalk.red(`Error: ${error}`))
-    } else {
-      console.log(files)
-      files.forEach(file => {
-        stat(file, (err, stats) => {
-          if (stats && stats.isDirectory()) {
-            newArray.concat(file);
-          } else {
-            console.log(err);
-          }
-        })
-      })
-    }
-  })
+  // si es directorio
+  if (isAdirectory(track)) {
+    // recorrer archivos dentro
+    readDirectory(track).forEach((files) => {
+      console.log(files);
+    });
+  }
+  // let newArray = [];
+  // readdir(track, (error, files) => {
+  //   if (error) {
+  //     console.log(chalk.red(`Error: ${error}`))
+  //   } else {
+  //     console.log(files)
+  //     files.forEach(file => {
+  //       stat(file, (err, stats) => {
+  //         if (stats && stats.isDirectory()) {
+  //           newArray.concat(file);
+  //         } else {
+  //           console.log(err);
+  //         }
+  //       })
+  //     })
+  //   }
+  // })
 }
 
 navigateDirectory(directPath);
