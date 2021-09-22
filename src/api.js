@@ -6,7 +6,7 @@ import * as path from 'path';
 // import chalk from 'chalk'; // para añadir color al texto
 // import { stat } from 'fs/promises';
 
-const directPath = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator'; // prueba
+const directPath = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator.md'; // prueba
 
 // ---------------------- Para saber si el path existe ----------------------------- //
 export const isAnExistingPath = (track) => existsSync(track); // true o false
@@ -25,7 +25,7 @@ export const readDirectory = (track) => readdirSync(track);
 // console.log(readDirectory(directPath));
 
 // --------------------------- Para recorrer directorio  ------------------------------ //
-const getFilesFromDirectory = (track) => {
+export const getFilesFromDirectory = (track) => {
   let arrayFiles = [];
   // si es directorio
   if (isAdirectory(track)) {
@@ -43,7 +43,7 @@ const getFilesFromDirectory = (track) => {
   return arrayFiles;
 }
 
-getFilesFromDirectory(directPath);
+console.log(getFilesFromDirectory(directPath));
 
 // --------------------- Para validar si es una extensión de un archivo md -------------------- //
 export const isMdExtension = (track) => {
