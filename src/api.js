@@ -79,14 +79,13 @@ const getLinks = (track) => {
      const linksResolve = link.replace(/(\r\n|\n|\r|)/gm, '').replace(/[{()}]/g, '').replace(/,/g, '');
      arrayLinks.push(linksResolve)
     })
-
-    console.log(arrayLinks);
+    return arrayLinks
   }
 
 
 }
 
-getLinks(directPath);
+console.log(getLinks(directPath));
 // --------------------------- option validate: true ------------------------------ //
 // ...
 // ...
