@@ -7,7 +7,7 @@ import * as path from 'path';
 // import { stat } from 'fs/promises';
 
 const directPath = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator.md'; // prueba
-
+// const directPath = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\fileText.txt';
 // ---------------------- Para saber si el path existe ----------------------------- //
 export const isAnExistingPath = (track) => existsSync(track); // true o false
 
@@ -31,19 +31,17 @@ export const getFilesFromDirectory = (track) => {
   if (isAdirectory(track)) {
     // recorrer archivos dentro
     readDirectory(track).forEach((files) => {
-    const resolvePath = path.resolve(track + '/' + files); // ruta resuelta
-    const directoryFiles = getFilesFromDirectory(resolvePath);
-   // console.log(directoryFiles, 'este es un console');
-    arrayFiles.push(directoryFiles);
+      const resolvePath = path.resolve(track + '/' + files); // ruta resuelta
+      const directoryFiles = getFilesFromDirectory(resolvePath);
+      arrayFiles.push(directoryFiles);
     });
-    
   } else {
     arrayFiles.push(track); // enpuje en un array los archivo
   }
   return arrayFiles;
 }
 
-console.log(getFilesFromDirectory(directPath));
+getFilesFromDirectory(directPath);
 
 // --------------------- Para validar si es una extensión de un archivo md -------------------- //
 export const isMdExtension = (track) => {
@@ -57,12 +55,32 @@ export const isMdExtension = (track) => {
 
 // ----------------------- Para leer un archivo md -------------------------------- //
 export const readFileMd = (track) => readFileSync(track, 'utf8')
-
+// console.log(readFileMd(directPath))
+// export const readFileMd = (track) => {
+//   if(isMdExtension(track)) {
+//     readFileSync(track, 'utf8');
+//   } else {
+//     console.log('El archivo no es .md')
+//   }
+// }
+// readFileMd(directPath);
 // --------------------------- Para extraer links en un array ------------------------------ //
-// ...
-// ...
+// const regex = /(https?:\/\/[^ ]*)/;
+// let url = input.match(regex)[1];
+// console.log(url);
 
+const getLinks = (track) => {
+  // const arrayLinks = [];
+  const regex = /(https?:\/\/[^ ]*)/;
+  // Si es una extensión md
+  if (isMdExtension(track)) {
+    // Obtener links del archivo
+    const links = readFileMd(track).match(regex)[1];
+    console.log(links);
+  }
+}
 
+getLinks(directPath);
 // --------------------------- option validate: true ------------------------------ //
 // ...
 // ...
