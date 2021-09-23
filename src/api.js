@@ -74,7 +74,10 @@ const getLinks = (track) => {
     // Obtener links del archivo
     const regex = /(https?:\/\/[^ ]*)/gi;
     const links = readFileMd(track).match(regex);
-    console.log(links)
+    links.forEach((link) => {
+      // Quitar los saltos (\r\n)de línea de cada link
+      link.replace(/(\r\n|\n|\r)/gm, "");
+    })
 
     //arrayLinks.push(links)
   }
