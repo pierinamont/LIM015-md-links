@@ -6,7 +6,7 @@ import * as path from 'path';
 // import chalk from 'chalk'; // para añadir color al texto
 // import { stat } from 'fs/promises';
 
-const directPath = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator'; // prueba
+const directPath = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator.md'; // prueba
 // const directPath = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\fileText.txt';
 // ---------------------- Para saber si el path existe ----------------------------- //
 export const isAnExistingPath = (track) => existsSync(track); // true o false
@@ -53,10 +53,10 @@ export const getFilesFromDirectory = (track) => {
   return arrayFiles;
 }
 
-console.log(getFilesFromDirectory(directPath));
+// console.log(getFilesFromDirectory(directPath));
 
 // ----------------------- Para leer un archivo md -------------------------------- //
-export const readFileMd = (track) => readFileSync(track, 'utf8')
+export const readFileMd = (track) => readFileSync(track, 'utf8');
 // console.log(readFileMd(directPath))
 // export const readFileMd = (track) => {
 //   if(isMdExtension(track)) {
@@ -68,14 +68,18 @@ export const readFileMd = (track) => readFileSync(track, 'utf8')
 // readFileMd(directPath);
 // --------------------------- Para extraer links en un array ------------------------------ //
 const getLinks = (track) => {
-  // const arrayLinks = [];
-  const regex = /(https?:\/\/[^ ]*)/;
-  // Si es una extensión md
+  //Si es una extensión md
+  //const arrayLinks = [];
   if (isMdExtension(track)) {
     // Obtener links del archivo
-    const links = readFileMd(track).match(regex)[1];
-    console.log(links);
+    const regex = /(https?:\/\/[^ ]*)/gi;
+    const links = readFileMd(track).match(regex);
+    console.log(links)
+
+    //arrayLinks.push(links)
   }
+
+
 }
 
 getLinks(directPath);
