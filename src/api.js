@@ -69,17 +69,18 @@ export const readFileMd = (track) => readFileSync(track, 'utf8');
 // --------------------------- Para extraer links en un array ------------------------------ //
 const getLinks = (track) => {
   //Si es una extensión md
-  //const arrayLinks = [];
   if (isMdExtension(track)) {
-    // Obtener links del archivo
+    const arrayLinks = [];
     const regex = /(https?:\/\/[^ ]*)/gi;
     const links = readFileMd(track).match(regex);
+    // Obtener links del archivo
     links.forEach((link) => {
-      // Quitar los saltos (\r\n)de línea de cada link
-      link.replace(/(\r\n|\n|\r)/gm, "");
+      // Quitar los saltos de línea(\r\n) de cada link, los paréntesis y comas
+     const linksResolve = link.replace(/(\r\n|\n|\r|)/gm, '').replace(/[{()}]/g, '').replace(/,/g, '');
+     arrayLinks.push(linksResolve)
     })
 
-    //arrayLinks.push(links)
+    console.log(arrayLinks);
   }
 
 
