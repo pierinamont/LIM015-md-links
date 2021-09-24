@@ -10,7 +10,9 @@ console.log(fetch);
 
 const directPath = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator.md'; // prueba
 // const directPath = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\fileText.txt';
-const link = 'https://nodsddsaejs.org/';
+// const link = 'https://nodsddsaejs.org/';
+
+
 // ---------------------- Para saber si el path existe ----------------------------- //
 export const isAnExistingPath = (track) => existsSync(track); // true o false
 
@@ -97,22 +99,24 @@ const getLinks = (track) => {
   }
 }
 
-console.log(getLinks(directPath));
+getLinks(directPath);
 
 // ---------------------- Para ver si links son válidos ----------------------------- //
 // --------------------------- option validate: true ------------------------------ //
-const linksValidate = (track) => fetch(track)
+const validateLinks = (links) => fetch(links.href)
   .then((result) => {
     return {
+      ...links,
       status: result.status, 
       statusText: result.statusText
     }
   })
   .catch(() => {
     return {
+      ...links,
       status: 'fail', 
       statusText: 'fail'
     }
   })
 
-linksValidate(link);
+  validateLinks(prueba);
