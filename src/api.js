@@ -1,13 +1,16 @@
 // import { SSL_OP_MICROSOFT_SESS_ID_BUG } from 'constants';
 import {
-  existsSync, statSync, readFileSync, readdirSync, readdir,
+  existsSync, statSync, readFileSync, readdirSync,
 } from 'fs';
 import * as path from 'path';
+import fetch from 'node-fetch';
+console.log(fetch);
 // import chalk from 'chalk'; // para añadir color al texto
 // import { stat } from 'fs/promises';
 
 const directPath = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator.md'; // prueba
 // const directPath = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\fileText.txt';
+const link = 'https://nodsddsaejs.org/';
 // ---------------------- Para saber si el path existe ----------------------------- //
 export const isAnExistingPath = (track) => existsSync(track); // true o false
 
@@ -67,6 +70,7 @@ export const readFileMd = (track) => readFileSync(track, 'utf8');
 // }
 // readFileMd(directPath);
 // --------------------------- Para extraer links en un array ------------------------------ //
+// --------------------------- option validate: false ------------------------------ //
 const getLinks = (track) => {
   //Si es una extensión md
   if (isMdExtension(track)) {
@@ -91,15 +95,24 @@ const getLinks = (track) => {
     })
     return arrayLinks
   }
-
-
 }
 
 console.log(getLinks(directPath));
-// --------------------------- option validate: true ------------------------------ //
-// ...
-// ...
 
-// --------------------------- option validate: false ------------------------------ //
-// ...
-// ...
+// ---------------------- Para ver si links son válidos ----------------------------- //
+// --------------------------- option validate: true ------------------------------ //
+const linksValidate = (track) => fetch(track)
+  .then((result) => {
+    return {
+      status: result.status, 
+      statusText: result.statusText
+    }
+  })
+  .catch(() => {
+    return {
+      status: 'fail', 
+      statusText: 'fail'
+    }
+  })
+
+linksValidate(link);
