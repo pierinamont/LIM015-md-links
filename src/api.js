@@ -74,18 +74,19 @@ const getLinks = (track) => {
     const regex = /(https?:\/\/[^ ]*)/gi;
     const links = readFileMd(track).match(regex);
 
+  
+
     // Obtener links del archivo
     links.forEach((link) => {
+      // Extraer texto de los link
+      const linkText = /[^.]+/.exec(link)[0].replace('https://', '');
       // Quitar los saltos de línea(\r\n) de cada link, los paréntesis y comas
-     const linksResolve = link.replace(/(\r\n|\n|\r|)/gm, '').replace(/[{()}]/g, '').replace(/,/g, '');
-    // arrayLinks.push(linksResolve)
-
-     arrayLinks.push({
-          href: linksResolve,
-          text: 'falta',
-          file: track,
-        });
-
+      const linksResolve = link.replace(/(\r\n|\n|\r|)/gm, '').replace(/[{()}]/g, '').replace(/,/g, '')
+      arrayLinks.push({
+            href: linksResolve,
+            text: linkText,
+            file: track,
+      });
 
     })
     return arrayLinks
