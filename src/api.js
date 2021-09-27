@@ -27,12 +27,11 @@ export const convertToAbsolute = (track) => path.resolve(track);
 
 // --------------------------- Para leer un directorio ------------------------------ //
 export const readDirectory = (track) => readdirSync(track);
-// console.log(readDirectory(directPath));
 
 // --------------------- Para validar si es una extensión de un archivo md -------------------- //
 export const isMdExtension = (track) => {
-  const isMdExtension = path.extname(track);
-  if (isMdExtension === '.md') {
+  const extension = path.extname(track);
+  if (extension === '.md') {
     return true;
   } else {
     return false;
@@ -58,33 +57,24 @@ export const getFilesFromDirectory = (track) => {
   return arrayFiles;
 }
 
-// console.log(getFilesFromDirectory(directPath));
+
 
 // ----------------------- Para leer un archivo md -------------------------------- //
 export const readFileMd = (track) => readFileSync(track, 'utf8');
-// console.log(readFileMd(directPath))
-// export const readFileMd = (track) => {
-//   if(isMdExtension(track)) {
-//     readFileSync(track, 'utf8');
-//   } else {
-//     console.log('El archivo no es .md')
-//   }
-// }
-// readFileMd(directPath);
 
 // --------------------------- Para extraer links en un array ------------------------------ //
 // --------------------------- option validate: false ------------------------------ //
-const getLinks = (track) => {
+export const getLinks = (track) => {
   //Si es una extensión md
   if (isMdExtension(track)) {
     const arrayLinks = [];
     const regex = /(https?:\/\/[^ ]*)/gi;
     const regextext = /\[(.+)\]/gi;
 
-    // links 
+    // match links 
     const links = readFileMd(track).match(regex);
 
-    // texto
+    // match texto
     const linkText = readFileMd(track).match(regextext);
     
     // Obtener links del archivo
@@ -93,6 +83,7 @@ const getLinks = (track) => {
       const linksResolve = link.replace(/(\r\n|\n|\r|)/gm, '').replace(/[{()}]/g, '').replace(/,/g, '')
       arrayLinks.push({
             href: linksResolve,
+            // Quitar corchetes
             text: linkText[i].replace('[', '').replace(']', ''),
             file: track,
       });
@@ -101,9 +92,6 @@ const getLinks = (track) => {
   }
 }
 console.log(getLinks(process.argv[2]))
-
-
-
 
 // ---------------------- Para ver si links son válidos ----------------------------- //
 // --------------------------- option validate: true ------------------------------ //
