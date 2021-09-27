@@ -3,12 +3,12 @@ import {
   existsSync, statSync, readFileSync, readdirSync,
 } from 'fs';
 import * as path from 'path';
-import fetch from 'node-fetch';
-console.log(fetch);
+
+// import fetch from 'node-fetch';
 // import chalk from 'chalk'; // para añadir color al texto
 // import { stat } from 'fs/promises';
 
-const directPath = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator.md'; // prueba
+// const directPath = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator.md'; // prueba
 // const directPath = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\fileText.txt';
 // const link = 'https://nodsddsaejs.org/';
 
@@ -71,6 +71,7 @@ export const readFileMd = (track) => readFileSync(track, 'utf8');
 //   }
 // }
 // readFileMd(directPath);
+
 // --------------------------- Para extraer links en un array ------------------------------ //
 // --------------------------- option validate: false ------------------------------ //
 const getLinks = (track) => {
@@ -78,45 +79,48 @@ const getLinks = (track) => {
   if (isMdExtension(track)) {
     const arrayLinks = [];
     const regex = /(https?:\/\/[^ ]*)/gi;
+    const regextext = /\[(.+)\]/gi;
+
+    // links 
     const links = readFileMd(track).match(regex);
 
-  
-
+    // texto
+    const linkText = readFileMd(track).match(regextext);
+    
     // Obtener links del archivo
-    links.forEach((link) => {
-      // Extraer texto de los link
-      const linkText = /[^.]+/.exec(link)[0].replace('https://', '');
+    links.forEach((link, i) => {
       // Quitar los saltos de línea(\r\n) de cada link, los paréntesis y comas
       const linksResolve = link.replace(/(\r\n|\n|\r|)/gm, '').replace(/[{()}]/g, '').replace(/,/g, '')
       arrayLinks.push({
             href: linksResolve,
-            text: linkText,
+            text: linkText[i].replace('[', '').replace(']', ''),
             file: track,
       });
-
-    })
+    });
     return arrayLinks
   }
 }
+console.log(getLinks(process.argv[2]))
 
-getLinks(directPath);
+
+
 
 // ---------------------- Para ver si links son válidos ----------------------------- //
 // --------------------------- option validate: true ------------------------------ //
-const validateLinks = (links) => fetch(links.href)
-  .then((result) => {
-    return {
-      ...links,
-      status: result.status, 
-      statusText: result.statusText
-    }
-  })
-  .catch(() => {
-    return {
-      ...links,
-      status: 'fail', 
-      statusText: 'fail'
-    }
-  })
+// const validateLinks = (links) => fetch(links.href)
+//   .then((result) => {
+//     return {
+//       ...links,
+//       status: result.status, 
+//       statusText: result.statusText
+//     }
+//   })
+//   .catch(() => {
+//     return {
+//       ...links,
+//       status: 'fail', 
+//       statusText: 'fail'
+//     }
+//   })
 
-  validateLinks(prueba);
+  // validateLinks(prueba);
