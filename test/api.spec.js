@@ -1,9 +1,10 @@
-
 // import { FLIPPED_ALIAS_KEYS } from '@babel/types';
-import { isAnExistingPath, isAbsolutePath,
+import {
+  isAnExistingPath, isAbsolutePath,
   convertToAbsolute, isAdirectory, isMdExtension,
   readDirectory, readFileMd, getFilesFromDirectory,
-  getLinks } from '../src/api.js';
+  getLinks,
+} from '../src/api.js';
 
 // constantes
 const track = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator';
@@ -15,15 +16,15 @@ const mdFile = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validato
 const dirArray = [
   [],
   [
-    'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\validatorTwo.md'
-  ]
+    'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\validatorTwo.md',
+  ],
 ];
 
 const filePath = [
-  'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\file.md'
+  'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\file.md',
 ];
 
-// ------------------------------------------------ tests ----------------------------------------------- //
+// ------------------------------------------- tests ----------------------------------------- //
 
 // -------------------------- valida si ruta existe ----------------------------- //
 describe('isAnExistingPath', () => {
@@ -62,19 +63,19 @@ describe('convertToAbsolute', () => {
   });
 });
 
-
 // -------------------------- valida si es directorio ----------------------------- //
 describe('isAdirectory', () => {
   it('Debe ser una función', () => {
     expect(typeof isAdirectory).toBe('function');
   });
   it('Debe validar si el path es un directorio', () => {
-     expect(isAdirectory(directory)).toBe(true)});
+    expect(isAdirectory(directory)).toBe(true);
+  });
 
   it('Debe validar si el path es un directorio', () => {
-    expect(isAdirectory(justFile)).toBe(false)});
+    expect(isAdirectory(justFile)).toBe(false);
+  });
 });
-
 
 // ------------------------------ lee un directorio ------------------------------- //
 describe('readDirectory', () => {
@@ -82,8 +83,9 @@ describe('readDirectory', () => {
     expect(typeof readDirectory).toBe('function');
   });
   it('Debe validar si el path es un directorio', () => {
-    const content =  [ 'file.md', 'validator.md', 'validator_duplicated' ];
-    expect(readDirectory(track)).toEqual(content)});
+    const content = ['file.md', 'validator.md', 'validator_duplicated'];
+    expect(readDirectory(track)).toEqual(content);
+  });
 });
 
 // --------------- recorre un directorio (obtiene archivos de directorio) ----------- //
@@ -92,9 +94,11 @@ describe('getFilesFromDirectory', () => {
     expect(typeof getFilesFromDirectory).toBe('function');
   });
   it('Debe retornar array con contenido del directorio', () => {
-    expect(getFilesFromDirectory(directory)).toEqual(dirArray)});
+    expect(getFilesFromDirectory(directory)).toEqual(dirArray);
+  });
   it('Debe retornar array con la ruta del archivo', () => {
-    expect(getFilesFromDirectory(justFile)).toEqual(filePath)});
+    expect(getFilesFromDirectory(justFile)).toEqual(filePath);
+  });
 });
 
 // -------------------------- valida si extensión es md ---------------------------- //
@@ -103,10 +107,12 @@ describe('isMdExtension', () => {
     expect(typeof isMdExtension).toBe('function');
   });
   it('Debe validar que es un archivo .md', () => {
-     expect(isMdExtension(justFile)).toBe(true)});
+    expect(isMdExtension(justFile)).toBe(true);
+  });
 
   it('Debe validar que no es archivo .md', () => {
-  expect(isMdExtension(directory)).toBe(false)});
+    expect(isMdExtension(directory)).toBe(false);
+  });
 });
 
 // --------------------------------- lee un archivo ----------------------------------- //
@@ -115,8 +121,8 @@ describe('readFileMd', () => {
     expect(typeof readFileMd).toBe('function');
   });
   it('Debe validar si el path es un directorio', () => {
-     const content = '[Markdown](https://es.wikipedia.org/wiki/Markdown) es un lenguaje de marcado';
-     expect(readFileMd(justFile)).toEqual(content);
+    const content = '[Markdown](https://es.wikipedia.org/wiki/Markdown) es un lenguaje de marcado';
+    expect(readFileMd(justFile)).toEqual(content);
   });
 });
 
@@ -126,11 +132,11 @@ describe('getLinks', () => {
     expect(typeof getLinks).toBe('function');
   });
   it('retornar un array con href, txt, path', () => {
-     const content = [{
-        href: 'https://nodejs.org/',
-        text: 'Node.js',
-        file: 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\validatorTwo.md'
-      }]
-     expect(getLinks(mdFile)).toEqual(content);
+    const content = [{
+      href: 'https://nodejs.org/',
+      text: 'Node.js',
+      file: 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\validatorTwo.md',
+    }];
+    expect(getLinks(mdFile)).toEqual(content);
   });
 });
