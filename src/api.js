@@ -4,7 +4,7 @@ import {
 } from 'fs';
 import * as path from 'path';
 
-// import fetch from 'node-fetch';
+import fetch from 'node-fetch';
 // import chalk from 'chalk'; // para añadir color al texto
 // import { stat } from 'fs/promises';
 
@@ -70,45 +70,57 @@ export const getLinks = (track) => {
     const arrayLinks = [];
     const regex = /(https?:\/\/[^ ]*)/gi;
     const regextext = /\[(.+)\]/gi;
+    const limitregex = / ^ [az] {0,10} $ /; // para limitar caracteres
 
     // match links 
     const links = readFileMd(track).match(regex);
 
     // match texto
     const linkText = readFileMd(track).match(regextext);
-    
+ 
     // Obtener links del archivo
     links.forEach((link, i) => {
+
       // Quitar los saltos de línea(\r\n) de cada link, los paréntesis y comas
-      const linksResolve = link.replace(/(\r\n|\n|\r|)/gm, '').replace(/[{()}]/g, '').replace(/,/g, '')
+      const linksResolve = link.replace(/(\r\n|\n|\r|)/gm, '').replace(/[{()}]/g, '').replace(/,/g, '');
+      const textResolve = linkText[i].replace('[', '').replace(']', '');
       arrayLinks.push({
             href: linksResolve,
-            // Quitar corchetes
-            text: linkText[i].replace('[', '').replace(']', ''),
+            // Quitar corchetes del texto
+            text: textResolve,
             file: track,
       });
     });
     return arrayLinks
   }
 }
-console.log(getLinks(process.argv[2]))
+// console.log(getLinks(process.argv[2]))
 
 // ---------------------- Para ver si links son válidos ----------------------------- //
 // --------------------------- option validate: true ------------------------------ //
-// const validateLinks = (links) => fetch(links.href)
-//   .then((result) => {
-//     return {
-//       ...links,
-//       status: result.status, 
-//       statusText: result.statusText
-//     }
-//   })
-//   .catch(() => {
-//     return {
-//       ...links,
-//       status: 'fail', 
-//       statusText: 'fail'
-//     }
-//   })
+const validateLinks = (arraylinks) => {
+  // Recorrer el objeto
+  const array = arraylinks.map((element) => {
+    // Acceder al href del objeto 
+    const fetchPromise = fetch(element.href)
+      .then((result) => {
+          return {
+            href: element.href,
+            text: element.text,
+            file: element.file,
+            status: result.status, 
+            statusText: result.statusText 
+          };
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    // retornar la promesa
+    return fetchPromise;
+  })
+  // retornar el array con la promesa resuelta
+  return Promise.all(array);
+}
 
-  // validateLinks(prueba);
+const array = getLinks('C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator.md');
+validateLinks(array).then((result) => console.log(result));
