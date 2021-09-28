@@ -5,7 +5,6 @@ import { isAnExistingPath, isAbsolutePath,
   readDirectory, readFileMd, getFilesFromDirectory,
   getLinks } from '../src/api.js';
 
-
 // constantes
 const track = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator';
 const failTrack = '../validator/validator.md';
@@ -122,21 +121,6 @@ describe('readFileMd', () => {
 });
 
 // -------------------------- extraer links en un array ----------------------------- //
-describe('getLinks', () => {
-  it('Debe ser una función', () => {
-    expect(typeof getLinks).toBe('function');
-  });
-  it('retornar un array con href, txt, path', () => {
-     const content = [{
-        href: 'https://nodejs.org/',
-        text: 'Node.js',
-        file: 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\validatorTwo.md'
-      }]
-     expect(getLinks(mdFile)).toEqual(content);
-  });
-});
-
-// -------------------------- validar links ----------------------------- //
 describe('getLinks', () => {
   it('Debe ser una función', () => {
     expect(typeof getLinks).toBe('function');

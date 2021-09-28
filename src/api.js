@@ -5,7 +5,7 @@ import {
 import * as path from 'path';
 
 import fetch from 'node-fetch';
-// import chalk from 'chalk'; // para añadir color al texto
+import chalk from 'chalk'; // para añadir color al texto
 // import { stat } from 'fs/promises';
 
 // const directPath = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator.md'; // prueba
@@ -106,25 +106,26 @@ const validateLinks = (arraylinks) => {
       .then((result) => {
         return {
           href: element.href,
-          text: element.text,
+          // Para limitar el texto a 50 caracteres
+          text: element.text.substr(0, 50),
           file: element.file,
           status: result.status, 
-          statusText: result.status > 199 && result.status <= 399 ? 'OK' : 'FAIL'
+          statusText: result.status >= 200 && result.status <= 399 ? 'OK' : 'FAIL'
         };
       })
       .catch((error) => {
-        console.log(error);
         return {
           href: element.href,
           text: element.text,
           file: element.file,
-          status: 'FAIL'+ error, 
+          status: 'FAIL'+ `${error}`, 
           statusText: 'FAIL'
         };
       })
     // retornar la promesa
     return fetchPromise;
   })
+  // console.log(array, 'promesa')
   // retornar el array con la promesa resuelta
   return Promise.all(array);
 }
