@@ -99,21 +99,28 @@ export const getLinks = (track) => {
 // ---------------------- Para ver si links son válidos ----------------------------- //
 // --------------------------- option validate: true ------------------------------ //
 const validateLinks = (arraylinks) => {
-  // Recorrer el objeto
+  // Recorrer el obj de arrays que nos brinda 'getLinks'
   const array = arraylinks.map((element) => {
     // Acceder al href del objeto 
     const fetchPromise = fetch(element.href)
       .then((result) => {
-          return {
-            href: element.href,
-            text: element.text,
-            file: element.file,
-            status: result.status, 
-            statusText: result.statusText 
-          };
+        return {
+          href: element.href,
+          text: element.text,
+          file: element.file,
+          status: result.status, 
+          statusText: result.status > 199 && result.status <= 399 ? 'OK' : 'FAIL'
+        };
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log(error);
+        return {
+          href: element.href,
+          text: element.text,
+          file: element.file,
+          status: 'FAIL'+ error, 
+          statusText: 'FAIL'
+        };
       })
     // retornar la promesa
     return fetchPromise;
@@ -122,5 +129,6 @@ const validateLinks = (arraylinks) => {
   return Promise.all(array);
 }
 
+// prueba
 const array = getLinks('C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator.md');
 validateLinks(array).then((result) => console.log(result));
