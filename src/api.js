@@ -85,6 +85,8 @@ export const getLinks = (track) => {
     });
     return arrayLinks;
   }
+  // prueba por eslint(Expected to return a value at the end of arrow function)
+  return true;
 };
 // console.log(getLinks(process.argv[2]))
 
