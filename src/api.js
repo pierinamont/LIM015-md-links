@@ -49,9 +49,12 @@ export const getFilesFromDirectory = (track) => {
   } else if (isMdExtension(track)) { // si es archivo md
     // enpuje en un array los archivos md
     arrayFiles.push(track);
+  } else {
+    return false;
   }
   return arrayFiles;
 };
+console.log(getFilesFromDirectory('C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator'), 'función getFilesFromDir');
 
 // ----------------------- Para leer un archivo md -------------------------------- //
 export const readFileMd = (track) => readFileSync(track, 'utf8');
@@ -79,7 +82,7 @@ export const getLinks = (track) => {
       arrayLinks.push({
         href: linksResolve,
         // Quitar corchetes del texto
-        text: textResolve,
+        text: textResolve.substr(0, 50),
         file: track,
       });
     });
@@ -88,7 +91,7 @@ export const getLinks = (track) => {
   // prueba por eslint(Expected to return a value at the end of arrow function)
   return true;
 };
-// console.log(getLinks(process.argv[2]))
+console.log(getLinks('C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator.md'), 'función getLinks');
 
 // ---------------------- Para ver si links son válidos ----------------------------- //
 // --------------------------- option validate: true ------------------------------ //
@@ -121,5 +124,6 @@ const validateLinks = (arraylinks) => {
 };
 
 // prueba
-const array = getLinks('C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator.md');
-validateLinks(array).then((result) => console.log(result));
+// const array = getLinks
+// ('C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator.md');
+// validateLinks(array).then((result) => console.log(result, 'función validateLinks'));

@@ -30,9 +30,8 @@
     ]
   ],
   "scripts": {
-    "test": "jest --verbose --coverage",
-    "lint": "eslint . --fix",
-    "build": "cross-env NODE_OPTIONS=--experimental-vm-modules jest"
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
+    "lint": "eslint . --fix"
   },
   "repository": {
     "type": "git",
