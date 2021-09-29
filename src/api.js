@@ -36,7 +36,7 @@ export const isMdExtension = (track) => {
 
 // --------------------------- Para recorrer directorio  ------------------------------ //
 export const getFilesFromDirectory = (track) => {
-  const arrayFiles = [];
+  let arrayFiles = [];
   // si es directorio
   if (isAdirectory(track)) {
     // recorrer archivos dentro
@@ -44,13 +44,11 @@ export const getFilesFromDirectory = (track) => {
       const joinPath = path.join(track, file); // chequear
       const resolvePath = path.resolve(joinPath); // ruta resuelta
       const directoryFiles = getFilesFromDirectory(resolvePath);
-      arrayFiles.push(directoryFiles);
+      arrayFiles = arrayFiles.concat(directoryFiles);
     });
   } else if (isMdExtension(track)) { // si es archivo md
     // enpuje en un array los archivos md
     arrayFiles.push(track);
-  } else {
-    return false;
   }
   return arrayFiles;
 };
