@@ -14,10 +14,7 @@ const justFile = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\valida
 const mdFile = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\validatorTwo.md';
 
 const dirArray = [
-  [],
-  [
-    'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\validatorTwo.md',
-  ],
+  'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\validatorTwo.md',
 ];
 
 const filePath = [
@@ -140,3 +137,6 @@ describe('getLinks', () => {
     expect(getLinks(mdFile)).toEqual(content);
   });
 });
+
+// console.log(fetch, 'fetch');
+// console.log(fetchMock, 'fetchMock');

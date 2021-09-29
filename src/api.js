@@ -122,6 +122,5 @@ const validateLinks = (arraylinks) => {
 };
 
 // prueba
-// const array = getLinks
-// ('C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator.md');
-// validateLinks(array).then((result) => console.log(result, 'función validateLinks'));
+const array = getLinks('C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator.md');
+validateLinks(array).then((result) => console.log(result, 'función validateLinks'));
