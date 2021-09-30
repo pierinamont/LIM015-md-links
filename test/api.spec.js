@@ -14,10 +14,7 @@ const justFile = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\valida
 const mdFile = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\validatorTwo.md';
 
 const dirArray = [
-  [],
-  [
-    'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\validatorTwo.md',
-  ],
+  'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\validatorTwo.md',
 ];
 
 const filePath = [
@@ -132,11 +129,27 @@ describe('getLinks', () => {
     expect(typeof getLinks).toBe('function');
   });
   it('retornar un array con href, txt, path', () => {
-    const content = [{
-      href: 'https://nodejs.org/',
-      text: 'Node.js',
-      file: 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\validatorTwo.md',
-    }];
+    const content = [
+      {
+        href: 'https://nodejs.org/',
+        text: 'Node.js',
+        file: 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\validatorTwo.md',
+      },
+      {
+        href: 'https://nodej/',
+        text: 'Link roto',
+        file: 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\validatorTwo.md',
+      },
+      {
+        href: 'https://es.wikipedia.oi/Markdown',
+        text: 'Markdown',
+        file: 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\validatorTwo.md',
+      },
+    ];
+
     expect(getLinks(mdFile)).toEqual(content);
   });
 });
+
+// console.log(fetch, 'fetch');
+// console.log(fetchMock, 'fetchMock');

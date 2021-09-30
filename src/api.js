@@ -5,10 +5,10 @@ import {
 import * as path from 'path';
 
 import fetch from 'node-fetch';
-// import chalk from 'chalk'; // para añadir color al texto
-// import { stat } from 'fs/promises';
 
-// const link = 'https://nodsddsaejs.org/';
+const fs = require('fs')
+const fetch = require('fetch');
+const path = require('path');
 
 // ---------------------- Para saber si el path existe ----------------------------- //
 export const isAnExistingPath = (track) => existsSync(track); // true o false
@@ -36,7 +36,7 @@ export const isMdExtension = (track) => {
 
 // --------------------------- Para recorrer directorio  ------------------------------ //
 export const getFilesFromDirectory = (track) => {
-  const arrayFiles = [];
+  let arrayFiles = [];
   // si es directorio
   if (isAdirectory(track)) {
     // recorrer archivos dentro
@@ -44,7 +44,7 @@ export const getFilesFromDirectory = (track) => {
       const joinPath = path.join(track, file); // chequear
       const resolvePath = path.resolve(joinPath); // ruta resuelta
       const directoryFiles = getFilesFromDirectory(resolvePath);
-      arrayFiles.push(directoryFiles);
+      arrayFiles = arrayFiles.concat(directoryFiles);
     });
   } else if (isMdExtension(track)) { // si es archivo md
     // enpuje en un array los archivos md
@@ -62,24 +62,23 @@ export const getLinks = (track) => {
   // Si es una extensión md
   if (isMdExtension(track)) {
     const arrayLinks = [];
-    const regex = /(https?:\/\/[^ ]*)/gi;
-    const regextext = /\[(.+)\]/gi;
+    const regex = /\(((?:\/|https?:\/\/)[\w\d./?=#&_%~,.:-]+)\)/mg;
+    const regextext = /\[([\w\s\d.()]+)\]/g;
 
     // match links
     const links = readFileMd(track).match(regex);
-
     // match texto
     const linkText = readFileMd(track).match(regextext);
-
     // Obtener links del archivo
     links.forEach((link, i) => {
-      // Quitar los saltos de línea(\r\n) de cada link, los paréntesis y comas
-      const linksResolve = link.replace(/(\r\n|\n|\r|)/gm, '').replace(/[{()}]/g, '').replace(/,/g, '');
+      // Quitar los los paréntesis
+      const linksResolve = link.replace('(', '').replace(')', '');
+      // Quitar los los corchetes
       const textResolve = linkText[i].replace('[', '').replace(']', '');
       arrayLinks.push({
         href: linksResolve,
         // Quitar corchetes del texto
-        text: textResolve,
+        text: textResolve.substr(0, 50),
         file: track,
       });
     });
@@ -88,11 +87,13 @@ export const getLinks = (track) => {
   // prueba por eslint(Expected to return a value at the end of arrow function)
   return true;
 };
-// console.log(getLinks(process.argv[2]))
+const link = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\file.md';
+
+console.log(getLinks(link));
 
 // ---------------------- Para ver si links son válidos ----------------------------- //
 // --------------------------- option validate: true ------------------------------ //
-const validateLinks = (arraylinks) => {
+export const validateLinks = (arraylinks) => {
   // Recorrer el obj de arrays que nos brinda 'getLinks'
   const array = arraylinks.map((element) => {
     // Acceder al href del objeto
@@ -103,14 +104,14 @@ const validateLinks = (arraylinks) => {
         text: element.text.substr(0, 50),
         file: element.file,
         status: result.status,
-        statusText: result.status >= 200 && result.status <= 399 ? 'OK' : 'FAIL',
+        statusText: result.status >= 200 && result.status <= 399 ? 'Ok' : 'Fail',
       }))
       .catch((error) => ({
         href: element.href,
         text: element.text,
         file: element.file,
-        status: `'FAIL' + ${error}`,
-        statusText: 'FAIL',
+        status: 'Failed request',
+        statusText: 'Fail',
       }));
     // retornar la promesa
     return fetchPromise;
@@ -121,5 +122,5 @@ const validateLinks = (arraylinks) => {
 };
 
 // prueba
-const array = getLinks('C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator.md');
-validateLinks(array).then((result) => console.log(result));
+const array = getLinks(link);
+validateLinks(array).then((result) => console.log(result, 'función validateLinks'));
