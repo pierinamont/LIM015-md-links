@@ -90,7 +90,7 @@ export const getLinks = (track) => {
 };
 const failLink = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md';
 
-console.log(getLinks(failLink), 'getLinks');
+// console.log(getLinks(failLink), 'getLinks');
 
 // ---------------------- Para ver si links son válidos ----------------------------- //
 // --------------------------- option validate: true ------------------------------ //
@@ -107,11 +107,11 @@ export const validateLinks = (arraylinks) => {
         status: result.status,
         statusText: result.status >= 200 && result.status <= 399 ? 'Ok' : 'Fail',
       }))
-      .catch(() => ({
+      .catch((error) => ({
         href: element.href,
         text: element.text,
         file: element.file,
-        status: 'There is no status',
+        status: 'Failed request',
         statusText: 'Fail',
       }));
     // retornar la promesa
