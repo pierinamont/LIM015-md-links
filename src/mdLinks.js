@@ -11,7 +11,8 @@ const mdLinks = (track, options = { validate: false }) => new Promise((resolve, 
   }
 });
 
-const existingPath = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\file.md';
+// const existingPath =
+// 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\file.md';
 const unexistingPath = 'C:\\Users\\user\\Desktop\\LAB';
 
 mdLinks(unexistingPath);

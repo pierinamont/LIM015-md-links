@@ -5,10 +5,10 @@ import {
 import * as path from 'path';
 
 import fetch from 'node-fetch';
-// import chalk from 'chalk'; // para añadir color al texto
-// import { stat } from 'fs/promises';
 
-// const link = 'https://nodsddsaejs.org/';
+const fs = require('fs')
+const fetch = require('fetch');
+const path = require('path');
 
 // ---------------------- Para saber si el path existe ----------------------------- //
 export const isAnExistingPath = (track) => existsSync(track); // true o false
@@ -69,7 +69,6 @@ export const getLinks = (track) => {
     const links = readFileMd(track).match(regex);
     // match texto
     const linkText = readFileMd(track).match(regextext);
-    console.log(linkText);
     // Obtener links del archivo
     links.forEach((link, i) => {
       // Quitar los los paréntesis
@@ -88,9 +87,9 @@ export const getLinks = (track) => {
   // prueba por eslint(Expected to return a value at the end of arrow function)
   return true;
 };
-const failLink = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md';
+const link = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\file.md';
 
-// console.log(getLinks(failLink), 'getLinks');
+console.log(getLinks(link));
 
 // ---------------------- Para ver si links son válidos ----------------------------- //
 // --------------------------- option validate: true ------------------------------ //
@@ -123,7 +122,5 @@ export const validateLinks = (arraylinks) => {
 };
 
 // prueba
-const goodLink = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator.md';
-
-const array = getLinks(failLink);
+const array = getLinks(link);
 validateLinks(array).then((result) => console.log(result, 'función validateLinks'));
