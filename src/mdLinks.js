@@ -1,7 +1,7 @@
 import chalk from 'chalk'; // para añadir color al texto
 import * as api from './api.js';
 
-const mdLinks = (track, options = { validate: true }) => new Promise((resolve, reject) => {
+export const mdLinks = (track, options = { validate: true }) => new Promise((resolve, reject) => {
   // Si el path no existe
   if (!api.isAnExistingPath(track)) {
     reject((chalk.red('Path does not exist')));
@@ -14,13 +14,14 @@ const mdLinks = (track, options = { validate: true }) => new Promise((resolve, r
   }
 });
 
-const existingPath = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\file.md';
+// prueba;
+const existingPath = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator.md';
 const unexistingPath = 'C:\\Users\\user\\Desktop\\LAB';
 
-mdLinks(unexistingPath, { validate: false })
-  .then((res) => { // crear una promesa global//
-    console.log(res, 23);
+mdLinks(existingPath, { validate: false })
+  .then((result) => {
+    console.log(result, 'este es el resultado');
   })
   .catch((error) => {
-    console.log(error);
-  }); // map debo construir un array de prom
+    console.log(error, 'este es un error');
+  });

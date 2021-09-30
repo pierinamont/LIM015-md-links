@@ -69,16 +69,18 @@ export const getLinks = (track) => {
     const links = readFileMd(track).match(regex);
     // match texto
     const linkText = readFileMd(track).match(regextext);
-
+    // console.log(linkText, 'EL TEXTO'); // prueba
     // Obtener links del archivo
     links.forEach((link, i) => {
       // Quitar los los paréntesis
       const linksResolve = link.replace('(', '').replace(')', '');
       // Quitar los los corchetes
       const textResolve = linkText[i].replace('[', '').replace(']', '');
+      // console.log(linkText[i], 'sale undefined'); // prueba
+      // console.log(textResolve, 'resuelto'); // prueba
       arrayLinks.push({
         href: linksResolve,
-        // Quitar corchetes del texto
+        // Limitar texto
         text: textResolve.substr(0, 50),
         file: track,
       });
@@ -88,8 +90,8 @@ export const getLinks = (track) => {
   // prueba por eslint(Expected to return a value at the end of arrow function)
   return true;
 };
-
-// console.log(getLinks(failLink), 'getLinks');
+const failLink = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md';
+console.log(getLinks(failLink), 'getLinks');
 
 // ---------------------- Para ver si links son válidos ----------------------------- //
 // --------------------------- option validate: true ------------------------------ //
@@ -122,7 +124,8 @@ export const validateLinks = (arraylinks) => {
 };
 
 // prueba
-const failLink = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md';
+// const failLink = 'C:\\Users\\user\\Desktop
+// \\LABORATORIA\\LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md';
 
-const array = getLinks(failLink);
-validateLinks(array).then((result) => console.log(result, 'función validateLinks'));
+// const array = getLinks(failLink);
+// validateLinks(array).then((result) => console.log(result, 'función validateLinks'));
