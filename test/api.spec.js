@@ -129,11 +129,23 @@ describe('getLinks', () => {
     expect(typeof getLinks).toBe('function');
   });
   it('retornar un array con href, txt, path', () => {
-    const content = [{
-      href: 'https://nodejs.org/',
-      text: 'Node.js',
-      file: 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\validatorTwo.md',
-    }];
+    const content = [
+      {
+        href: 'https://nodejs.org/',
+        text: 'Node.js',
+        file: 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\validatorTwo.md',
+      },
+      {
+        href: 'https://nodej/',
+        text: 'Link roto',
+        file: 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\validatorTwo.md',
+      },
+      {
+        href: 'https://es.wikipedia.oi/Markdown',
+        text: 'Markdown',
+        file: 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\validatorTwo.md',
+      },
+    ];
     expect(getLinks(mdFile)).toEqual(content);
   });
 });

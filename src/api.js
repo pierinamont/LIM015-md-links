@@ -69,7 +69,7 @@ export const getLinks = (track) => {
     const links = readFileMd(track).match(regex);
     // match texto
     const linkText = readFileMd(track).match(regextext);
-    console.log(linkText);
+
     // Obtener links del archivo
     links.forEach((link, i) => {
       // Quitar los los paréntesis
