@@ -88,7 +88,6 @@ export const getLinks = (track) => {
   // prueba por eslint(Expected to return a value at the end of arrow function)
   return true;
 };
-const failLink = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md';
 
 // console.log(getLinks(failLink), 'getLinks');
 
@@ -107,7 +106,7 @@ export const validateLinks = (arraylinks) => {
         status: result.status,
         statusText: result.status >= 200 && result.status <= 399 ? 'Ok' : 'Fail',
       }))
-      .catch((error) => ({
+      .catch(() => ({
         href: element.href,
         text: element.text,
         file: element.file,
@@ -123,7 +122,7 @@ export const validateLinks = (arraylinks) => {
 };
 
 // prueba
-const goodLink = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator.md';
+const failLink = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md';
 
 const array = getLinks(failLink);
 validateLinks(array).then((result) => console.log(result, 'función validateLinks'));
