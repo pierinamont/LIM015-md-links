@@ -10,7 +10,7 @@ const [,, ...args] = process.argv;
 
 console.log(`hello ${args}`);
 
-// console.log(process, 'PROCESS');
+console.log(process, 'PROCESS');
 console.log(args, 'ARGS');
 console.log(process.argv, 'PROCESS Y ARGV');
 console.log(process.title, 'ESTE ES TITULO');
