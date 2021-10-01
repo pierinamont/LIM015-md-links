@@ -15,7 +15,7 @@ export const mdLinks = (track, options = { validate: true }) => new Promise((res
 });
 
 // prueba;
-const existingPath = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator.md';
+const existingPath = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md';
 const unexistingPath = 'C:\\Users\\user\\Desktop\\LAB';
 
 mdLinks(existingPath, { validate: false })
