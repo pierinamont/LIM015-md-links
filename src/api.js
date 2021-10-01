@@ -90,8 +90,9 @@ export const getLinks = (track) => {
   // prueba por eslint(Expected to return a value at the end of arrow function)
   return true;
 };
-const failLink = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md';
-console.log(getLinks(failLink), 'getLinks');
+// const failLink ='C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator
+// \\validator_duplicated\\validatorTwo.md';
+// console.log(getLinks(failLink), 'getLinks');
 
 // ---------------------- Para ver si links son válidos ----------------------------- //
 // --------------------------- option validate: true ------------------------------ //

@@ -5,6 +5,9 @@
   "jest": {
     "verbose": true
   },
+  "bin": {
+    "md-links": "./src/cli.js"
+  },
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@babel/plugin-transform-modules-commonjs": "^7.15.4",
