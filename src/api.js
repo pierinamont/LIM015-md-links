@@ -99,8 +99,8 @@ export const validateLinks = (arraylinks) => {
       .then((result) => ({
         href: chalk.underline.cyan(element.href),
         // Para limitar el texto a 50 caracteres
-        text: chalk.italic.magenta(element.text),
-        file: chalk.bold.grey.bgWhite(element.file),
+        text: element.text,
+        file: element.file,
         status: result.status,
         statusText: result.status >= 200 && result.status <= 399 ? 'Ok' : 'Fail',
       }))
@@ -108,7 +108,7 @@ export const validateLinks = (arraylinks) => {
         href: element.href,
         text: element.text,
         file: element.file,
-        status: 'Failed request',
+        status: chalk.red('Failed request'),
         statusText: 'Fail',
       }));
     // retornar la promesa
@@ -120,8 +120,10 @@ export const validateLinks = (arraylinks) => {
 };
 
 // prueba
-// const f = 'C:\\Users\\user\\
-// Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md';
+// const f = 'C:\\Users\\user\\Desktop\\LABORATORIA\\
+// LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md';
+
+// C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator.md
 
 // const array = getLinks(failLink);
 // validateLinks(array).then((result) => console.log(result, 'función validateLinks'));
