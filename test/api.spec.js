@@ -136,13 +136,13 @@ describe('getLinks', () => {
         file: 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\validatorTwo.md',
       },
       {
-        href: 'https://nodej/',
-        text: 'Link roto',
+        href: 'https://es.wikipedia.oi/Markdown',
+        text: 'Markdown',
         file: 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\validatorTwo.md',
       },
       {
-        href: 'https://es.wikipedia.oi/Markdown',
-        text: 'Markdown',
+        href: 'https://nodej/',
+        text: 'Link roto',
         file: 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\validatorTwo.md',
       },
     ];

@@ -1,10 +1,14 @@
 import fetch from 'node-fetch';
-import { validateLinks } from '../src/api.js';
+// import { createRequire } from 'module'; // prueba
+import { validateLinks } from '../src/api.js'; // prueba
 
-jest.mock('../src/api.js');
+jest.mock('node-fetch');
 beforeEach(() => {
   validateLinks.mockClear();
 });
+
+// const require = createRequire(import.meta.url);
+// console.log(require);
 
 it('validateLinks', () => {
   test('statusText: OK', () => {

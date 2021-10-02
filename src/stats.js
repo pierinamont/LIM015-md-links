@@ -4,9 +4,10 @@ const statsLinks = (array) => {
   // total de links
   const total = array.length;
   // Links únicos
-  const unique = array.map((link) => link.href);
-  // \n => para separar;
-  const statsMsg = `Total: ${total}\nUnique:${unique}`;
+  let unique = array.map((link) => link.href);
+  // new Set se usa para obtener elementos únicos en un array
+  unique = [...new Set(unique)].length;
+  const statsMsg = `Total: ${total}\nUnique: ${unique}`;
   return statsMsg;
 };
 
