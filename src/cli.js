@@ -2,6 +2,7 @@
 
 import chalk from 'chalk'; // para añadir color al texto
 import mdLinks from './mdLinks.js';
+import { statsLinks, brokenLinks} from './stats.js';
 // Para poder usar argumentos
 const [,, ...args] = process.argv;
 
@@ -23,7 +24,7 @@ if (args.length === 1) {
     .catch((err) => console.log(err));
 }
 
-// --------------------------- Si se coloca ruta y opciones ------------------------//
+// --------------------------- Si se coloca ruta y una opcion ------------------------//
 
 if (args.length === 2) {
   if (args[1] === '--validate') {
@@ -38,6 +39,24 @@ if (args.length === 2) {
         console.log(`${file} ${href} ${text} ${status} ${statusText}`);
         return `${file} ${href} ${text} ${status} ${statusText}`;
       }))
+      .catch((err) => console.log(err));
+  }
+  if (args[1] === '--stats') {
+    mdLinks(args[0], { validate: true })
+      .then((array) => {
+        console.log(statsLinks(array));
+      })
+      .catch((err) => console.log(err));
+  }
+}
+
+// --------------------------- Si se coloca ruta y dos opciones ------------------------//
+if (args.length === 3) {
+  if ((args[1] === '--validate' && args[2] === '--stats') || (args[1] === '--stats' && args[2] === '--validate')) {
+    mdLinks(args[0], { validate: true })
+      .then((array) => {
+        console.log(`${statsLinks(array)}\n${brokenLinks(array)}`);
+      })
       .catch((err) => console.log(err));
   }
 }
