@@ -125,8 +125,8 @@ export const validateLinks = (arraylinks) => {
 };
 
 // prueba
-// const failLink = 'C:\\Users\\user\\Desktop
-// \\LABORATORIA\\LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md';
+// const f = 'C:\\Users\\user\\
+// Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md';
 
 // const array = getLinks(failLink);
 // validateLinks(array).then((result) => console.log(result, 'función validateLinks'));
