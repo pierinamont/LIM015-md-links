@@ -1,20 +1,21 @@
 #!/usr/bin/env node
 
-// import mdLinks from './mdLinks.js';
+import mdLinks from './mdLinks.js';
 
 // Para poder usar argumentos
 const [,, ...args] = process.argv;
 
 // Process nos permite acceder a toda la info de los docs
-// argv son los argumentos que el usuario escribe en la terminal: md-links 'hola'
+// args son los argumentos que el usuario escribe en la terminal: md-links 'hola'
 
-console.log(`hello ${args}`);
+// console.log(args, 'ARGS');
 
-console.log(process, 'PROCESS');
-console.log(args, 'ARGS');
-console.log(process.argv, 'PROCESS Y ARGV');
-console.log(process.title, 'ESTE ES TITULO');
-console.log(process.argv.slice(0), 0);
-console.log(process.argv.slice(1), 1);
-console.log(process.argv.slice(2), 2);
-console.log(process.argv.slice(3), 3);
+if (args.length === 1) {
+  // si solo se coloca ruta, sin validate
+  mdLinks(args[0])
+    .then((array) => array.map((element) => console.log(`${element.file} ${element.href} ${element.text}`)))
+    .catch((err) => console.log(err));
+}
+
+// C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator.md
+// C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\file.md

@@ -1,5 +1,5 @@
 // const mdLinks = require('../');
-// import { mdLinks } from '../';
+import { mdLinks } from '../src/mdLinks.js';
 
 describe('mdLinks', () => {
   it('should...', () => {

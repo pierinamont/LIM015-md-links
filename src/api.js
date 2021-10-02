@@ -5,7 +5,7 @@ import {
 import * as path from 'path';
 
 import fetch from 'node-fetch';
-// import chalk from 'chalk'; // para añadir color al texto
+import chalk from 'chalk'; // para añadir color al texto
 // import { stat } from 'fs/promises';
 
 // const link = 'https://nodsddsaejs.org/';
@@ -62,26 +62,21 @@ export const getLinks = (track) => {
   // Si es una extensión md
   if (isMdExtension(track)) {
     const arrayLinks = [];
-    const regex = /\(((?:\/|https?:\/\/)[\w\d./?=#&_%~,.:-]+)\)/mg;
+    const completeRegex = /\[([\w\s\d.()]+)\]\(((?:\/|https?:\/\/)[\w\d./?=#&_%~,.:-]+)\)/mg;
+    const regexLinks = /\(((?:\/|https?:\/\/)[\w\d./?=#&_%~,.:-]+)\)/mg;
     const regextext = /\[([\w\s\d.()]+)\]/g;
 
-    // match links
-    const links = readFileMd(track).match(regex);
-    // match texto
-    const linkText = readFileMd(track).match(regextext);
-    // console.log(linkText, 'EL TEXTO'); // prueba
+    const links = readFileMd(track).match(completeRegex);
     // Obtener links del archivo
-    links.forEach((link, i) => {
+    links.forEach((link) => {
       // Quitar los los paréntesis
-      const linksResolve = link.replace('(', '').replace(')', '');
+      const linksResolve = link.match(regexLinks).join().slice(1, -1);
       // Quitar los los corchetes
-      const textResolve = linkText[i].replace('[', '').replace(']', '');
-      // console.log(linkText[i], 'sale undefined'); // prueba
-      // console.log(textResolve, 'resuelto'); // prueba
+      const textResolve = link.match(regextext).join().slice(1, -1);
       arrayLinks.push({
         href: linksResolve,
         // Limitar texto
-        text: textResolve.substr(0, 50),
+        text: textResolve.slice(0, 49), // .substr(0, 50)
         file: track,
       });
     });
@@ -90,8 +85,8 @@ export const getLinks = (track) => {
   // prueba por eslint(Expected to return a value at the end of arrow function)
   return true;
 };
-// const failLink ='C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator
-// \\validator_duplicated\\validatorTwo.md';
+// const failLink = 'C:\\Users\\user\\Desktop\\
+// LABORATORIA\\LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md';
 // console.log(getLinks(failLink), 'getLinks');
 
 // ---------------------- Para ver si links son válidos ----------------------------- //
@@ -102,10 +97,10 @@ export const validateLinks = (arraylinks) => {
     // Acceder al href del objeto
     const fetchPromise = fetch(element.href)
       .then((result) => ({
-        href: element.href,
+        href: chalk.underline.cyan(element.href),
         // Para limitar el texto a 50 caracteres
-        text: element.text.substr(0, 50),
-        file: element.file,
+        text: chalk.italic.magenta(element.text.substr(0, 50)),
+        file: chalk.bold.grey.bgWhite(element.file),
         status: result.status,
         statusText: result.status >= 200 && result.status <= 399 ? 'Ok' : 'Fail',
       }))
