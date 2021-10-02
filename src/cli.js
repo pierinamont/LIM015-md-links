@@ -50,13 +50,24 @@ if (args.length === 2) {
   }
   if (args[1] === '--help') {
     const help = `
-            ***************************************************************************************************************************************
-            Las opciones son las siguientes:
-            '--validate' para validar cada link dentro del archivo, obtiene ruta del archivo, href, mensaje de OK o FAIL, estado del link y texto.
-            '--stats' para obtener el total de links y cantidad de links únicos.
-            '--validate --stats' al ingresar ambas opciones obtiene el total de links, cantidad de links únicos y links rotos.
-            ***************************************************************************************************************************************`;
-    console.log(help);
+ **************************************************************************************************
+  ____ ____ ____ ____ ________
+ ||h |||e |||l |||p |||       |
+ ||__|||__|||__|||__|||_______|
+ |/__/|/__/|/__/|/__/|/_______/
+ 
+ The options are the following:
+ 
+ 1) '--validate' => To validate each link within the file, get file path, href, OK or FAIL message,
+                    link status and text.
+
+ 2) '--stats' => To get the total number of links and number of unique links.
+
+ 3) '--validate --stats' => To get the total number of links, number of unique links and broken links.
+
+ *****************************************************************************************************
+`;
+    console.log(chalk.magenta(help));
   }
 }
 
