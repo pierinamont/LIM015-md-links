@@ -9,6 +9,7 @@ const [,, ...args] = process.argv;
 // Process nos permite acceder a toda la info de los docs
 // args son los argumentos que el usuario escribe en la terminal: md-links 'hola'
 
+const helpTxt = 'Try using "--stats", "--validate" or both. If you need more help, use "--help".';
 // --------------------------- Si se coloca solo ruta ------------------------//
 if (args.length === 1) {
   mdLinks(args[0], { validate: false })
@@ -23,7 +24,6 @@ if (args.length === 1) {
     }))
     .catch((err) => console.log(err));
 }
-
 // --------------------------- Si se coloca ruta y una opcion ------------------------//
 
 if (args.length === 2) {
@@ -47,6 +47,8 @@ if (args.length === 2) {
         console.log(statsLinks(array));
       })
       .catch((err) => console.log(err));
+  } else {
+    console.log(chalk.magenta(helpTxt));
   }
   if (args[1] === '--help') {
     const help = `
@@ -57,7 +59,7 @@ if (args.length === 2) {
  |/__/|/__/|/__/|/__/|/_______/
  
  The options are the following:
- 
+
  1) '--validate' => To validate each link within the file, get file path, href, OK or FAIL message,
                     link status and text.
 
