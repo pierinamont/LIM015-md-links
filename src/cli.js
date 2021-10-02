@@ -2,7 +2,7 @@
 
 import chalk from 'chalk'; // para añadir color al texto
 import mdLinks from './mdLinks.js';
-import { statsLinks, brokenLinks} from './stats.js';
+import { statsLinks, brokenLinks } from './stats.js';
 // Para poder usar argumentos
 const [,, ...args] = process.argv;
 
@@ -47,6 +47,16 @@ if (args.length === 2) {
         console.log(statsLinks(array));
       })
       .catch((err) => console.log(err));
+  }
+  if (args[1] === '--help') {
+    const help = `
+            ***************************************************************************************************************************************
+            Las opciones son las siguientes:
+            '--validate' para validar cada link dentro del archivo, obtiene ruta del archivo, href, mensaje de OK o FAIL, estado del link y texto.
+            '--stats' para obtener el total de links y cantidad de links únicos.
+            '--validate --stats' al ingresar ambas opciones obtiene el total de links, cantidad de links únicos y links rotos.
+            ***************************************************************************************************************************************`;
+    console.log(help);
   }
 }
 
