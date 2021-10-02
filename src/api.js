@@ -99,7 +99,7 @@ export const validateLinks = (arraylinks) => {
       .then((result) => ({
         href: chalk.underline.cyan(element.href),
         // Para limitar el texto a 50 caracteres
-        text: chalk.italic.magenta(element.text.substr(0, 50)),
+        text: chalk.italic.magenta(element.text),
         file: chalk.bold.grey.bgWhite(element.file),
         status: result.status,
         statusText: result.status >= 200 && result.status <= 399 ? 'Ok' : 'Fail',
