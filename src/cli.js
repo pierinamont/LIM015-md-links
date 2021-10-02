@@ -10,6 +10,27 @@ const [,, ...args] = process.argv;
 // args son los argumentos que el usuario escribe en la terminal: md-links 'hola'
 
 const helpTxt = 'Try using "--stats", "--validate" or both. If you need more help, use "--help".';
+// --------------------------- Si no se ingresa algo ------------------------//
+if (args.length === 0) {
+  const msg = `
+     ___________________
+    /                   \\
+    |  Do not forget to  |
+    |  enter a path      |
+    \\__________________/
+             !  !
+             L_ !
+            / _)!
+           / /__L
+     _____/ (____)
+            (____)
+     _____  (____)
+          \\_(____)
+             !  !
+             |__/
+    `;
+  console.log(chalk.yellow(msg));
+}
 // --------------------------- Si se coloca solo ruta ------------------------//
 if (args.length === 1) {
   mdLinks(args[0], { validate: false })
