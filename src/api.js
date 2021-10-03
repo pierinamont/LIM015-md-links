@@ -97,8 +97,7 @@ export const validateLinks = (arraylinks) => {
     // Acceder al href del objeto
     const fetchPromise = fetch(element.href)
       .then((result) => ({
-        href: chalk.underline.cyan(element.href),
-        // Para limitar el texto a 50 caracteres
+        href: element.href,
         text: element.text,
         file: element.file,
         status: result.status,
@@ -108,7 +107,7 @@ export const validateLinks = (arraylinks) => {
         href: element.href,
         text: element.text,
         file: element.file,
-        status: chalk.red('Failed request'),
+        status: 'Failed request',
         statusText: 'Fail',
       }));
     // retornar la promesa
@@ -120,10 +119,10 @@ export const validateLinks = (arraylinks) => {
 };
 
 // prueba
-// const f = 'C:\\Users\\user\\Desktop\\LABORATORIA\\
-// LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md';
+// const f = 'C:\\Users\\user\\Desktop\\LABORATORIA
+// \\LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md';
 
 // C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator.md
 
-// const array = getLinks(failLink);
+// const array = getLinks(f);
 // validateLinks(array).then((result) => console.log(result, 'función validateLinks'));

@@ -7,16 +7,17 @@ const mdLinks = (track, options = { validate: true }) => new Promise((resolve, r
     reject((chalk.red('Path does not exist')));
     // Si validate es true
   } else if (options.validate) {
-    const links = api.getLinks(track);
-    resolve(api.validateLinks(links));
+    const links = api.getLinks(track); // bien
+    // resolve(api.validateLinks(links));
+    api.validateLinks(links).then((result) => resolve(result));
   } else { // Si es validate false
     resolve(api.getLinks(track));
   }
 });
 
 // prueba;
-// const existingPath = 'C:\\Users\\user\\Desktop
-// \\LABORATORIA\\LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md';
+// const existingPath = 'C:\\Users\\user\\Desktop\\
+// LABORATORIA\\LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md';
 // mdLinks(existingPath, { validate: true })
 //   .then((result) => {
 //     console.log(result, 'este es el resultado');
