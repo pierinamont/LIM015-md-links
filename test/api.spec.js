@@ -128,7 +128,7 @@ describe('getLinks', () => {
   it('Debe ser una función', () => {
     expect(typeof getLinks).toBe('function');
   });
-  it('retornar un array con href, txt, path', () => {
+  it('retornar un array con href, txt, file', () => {
     const content = [
       {
         href: 'https://nodejs.org/',

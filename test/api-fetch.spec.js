@@ -2,13 +2,8 @@ import fetch from 'node-fetch';
 // import { createRequire } from 'module'; // prueba
 import { validateLinks } from '../src/api.js'; // prueba
 
-jest.mock('node-fetch');
-beforeEach(() => {
-  validateLinks.mockClear();
-});
-
-// const require = createRequire(import.meta.url);
-// console.log(require);
+// jest.mock('node-fetch');
+jest.mock('node-fetch', () => jest.fn());
 
 it('validateLinks', () => {
   test('statusText: OK', () => {
@@ -38,5 +33,3 @@ it('validateLinks', () => {
       });
   });
 });
-
-// hola

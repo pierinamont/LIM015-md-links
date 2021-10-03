@@ -5,10 +5,6 @@ import {
 import * as path from 'path';
 
 import fetch from 'node-fetch';
-import chalk from 'chalk'; // para añadir color al texto
-// import { stat } from 'fs/promises';
-
-// const link = 'https://nodsddsaejs.org/';
 
 // ---------------------- Para saber si el path existe ----------------------------- //
 export const isAnExistingPath = (track) => existsSync(track); // true o false

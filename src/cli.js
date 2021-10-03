@@ -3,13 +3,12 @@
 import chalk from 'chalk'; // para añadir color al texto
 import mdLinks from './mdLinks.js';
 import { statsLinks, brokenLinks } from './stats.js';
+
 // Para poder usar argumentos
 const [,, ...args] = process.argv;
 
-// Process nos permite acceder a toda la info de los docs
-// args son los argumentos que el usuario escribe en la terminal: md-links 'hola'
-
 const helpTxt = 'Try using "--stats", "--validate" or both. If you need more help, use "--help".';
+
 // --------------------------- Si no se ingresa algo ------------------------//
 if (args.length === 0) {
   const msg = `
