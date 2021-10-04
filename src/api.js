@@ -78,12 +78,11 @@ export const getLinks = (track) => {
     });
     return arrayLinks;
   }
-  // prueba por eslint(Expected to return a value at the end of arrow function)
+  return getLinks; // prueba
 };
 
-// const failLink = 'C:\\Users\\user\\Desktop\\
-// LABORATORIA\\LIM015-md-links\\validator\\validator.md';
-// console.log(getLinks(failLink), 'getLinks');
+const failLink = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator.md';
+console.log(getLinks(failLink), 'getLinks con la prueba');
 
 // ---------------------- Para ver si links son válidos ----------------------------- //
 // --------------------------- option validate: true ------------------------------ //
