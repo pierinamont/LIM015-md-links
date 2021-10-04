@@ -60,17 +60,13 @@ if (args.length === 2) {
         return `${file} ${href} ${text} ${status} ${statusText}`;
       }))
       .catch((err) => console.log(err));
-  }
-  if (args[1] === '--stats') {
+  } else if (args[1] === '--stats') {
     mdLinks(args[0], { validate: true })
       .then((array) => {
         console.log(statsLinks(array));
       })
       .catch((err) => console.log(err));
-  } else {
-    console.log(chalk.magenta(helpTxt));
-  }
-  if (args[1] === '--help') {
+  } else if (args[1] === '--help') {
     const help = `
  **************************************************************************************************
   ____ ____ ____ ____ ________
@@ -90,6 +86,8 @@ if (args.length === 2) {
  *****************************************************************************************************
 `;
     console.log(chalk.magenta(help));
+  } else {
+    console.log(chalk.magenta(helpTxt));
   }
 }
 
@@ -103,4 +101,8 @@ if (args.length === 3) {
       .catch((err) => console.log(err));
   }
 }
+
+// Rutas de prueba
+
+// C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\file.md
 // C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\file.md
