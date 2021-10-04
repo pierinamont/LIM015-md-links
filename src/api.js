@@ -38,8 +38,8 @@ export const getFilesFromDirectory = (track) => {
     // recorrer archivos dentro
     readDirectory(track).forEach((file) => {
       const joinPath = path.join(track, file); // chequear
-      const resolvePath = path.resolve(joinPath); // ruta resuelta
-      const directoryFiles = getFilesFromDirectory(resolvePath);
+      // const resolvePath = path.resolve(joinPath); // ruta resuelta
+      const directoryFiles = getFilesFromDirectory(joinPath);
       arrayFiles = arrayFiles.concat(directoryFiles);
     });
   } else if (isMdExtension(track)) { // si es archivo md
@@ -81,8 +81,9 @@ export const getLinks = (track) => {
   // prueba por eslint(Expected to return a value at the end of arrow function)
 };
 
-const failLink = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator.md';
-console.log(getLinks(failLink), 'getLinks');
+// const failLink = 'C:\\Users\\user\\Desktop\\
+// LABORATORIA\\LIM015-md-links\\validator\\validator.md';
+// console.log(getLinks(failLink), 'getLinks');
 
 // ---------------------- Para ver si links son válidos ----------------------------- //
 // --------------------------- option validate: true ------------------------------ //
@@ -114,10 +115,11 @@ export const validateLinks = (arraylinks) => {
 };
 
 // prueba
-// const f = 'C:\\Users\\user\\Desktop\\LABORATORIA
-// \\LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md';
+// const f = 'C:\\Users\\user\\Desktop\\
+// LABORATORIA\\LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md';
 
 // C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator.md
 
 // const array = getLinks(f);
+// console.log(array, 'esto obtiene validatelinks');
 // validateLinks(array).then((result) => console.log(result, 'función validateLinks'));

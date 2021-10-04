@@ -15,23 +15,23 @@ const mdLinks = (track, options = { validate: false }) => new Promise((resolve, 
   }
   // Si validate es false
   if (options.validate === false) {
-    resolve(array);
+    resolve(...array);
   }
   // Si validate es true
   if (options.validate === true) {
-    const validate = api.validateLinks(array).then((result) => result);
+    const validate = api.validateLinks(...array).then((result) => result);
     resolve(validate);
   }
 });
 
 // prueba
 // const existingPath = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator';
-mdLinks('../validator/validator.md', { validate: false })
-  .then((result) => {
-    console.log(result, 'este es el resultado');
-  })
-  .catch((error) => {
-    console.log(error, 'este es un error');
-  });
+// mdLinks('../validator/validator.md', { validate: true })
+//   .then((result) => {
+//     console.log(result, 'este es el resultado');
+//   })
+//   .catch((error) => {
+//     console.log(error, 'este es un error');
+//   });
 
 export default mdLinks;
