@@ -81,8 +81,9 @@ export const getLinks = (track) => {
   return getLinks; // prueba
 };
 
-const failLink = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator.md';
-console.log(getLinks(failLink), 'getLinks con la prueba');
+// const failLink = 'C:\\Users\\user\\Desktop\\
+// LABORATORIA\\LIM015-md-links\\validator\\validator.md';
+// console.log(getLinks(failLink), 'getLinks con la prueba');
 
 // ---------------------- Para ver si links son válidos ----------------------------- //
 // --------------------------- option validate: true ------------------------------ //

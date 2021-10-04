@@ -31,9 +31,10 @@ if (args.length === 0) {
   const msg = `
      ___________________
     /                   \\
-    |  Do not forget to  |
-    |  enter a path      |
-    \\__________________/
+    |  Do not forget to |
+    |  enter a path or  |
+    |  type --help      |
+    \\_________________//
              !  !
              L_ !
             / _)!
@@ -49,17 +50,20 @@ if (args.length === 0) {
 }
 // --------------------------- Si se coloca solo ruta ------------------------//
 if (args.length === 1) {
-  // FALTA AGREGAR HELP
-  mdLinks(args[0], { validate: false })
-    .then((array) => array.map((element) => {
-      const file = chalk.bold.grey.bgWhite(element.file);
-      const href = chalk.underline.cyan(element.href);
-      const text = chalk.italic.magenta(element.text);
+  if (args[0] === '--help') {
+    console.log(chalk.magenta(helpTxt));
+  } else {
+    mdLinks(args[0], { validate: false })
+      .then((array) => array.map((element) => {
+        const file = chalk.bold.grey.bgWhite(element.file);
+        const href = chalk.underline.cyan(element.href);
+        const text = chalk.italic.magenta(element.text);
 
-      console.log(`${file} ${href} ${text}`);
-      return `${file} ${href} ${text}`;
-    }))
-    .catch((err) => console.log(err));
+        console.log(`${file} ${href} ${text}`);
+        return `${file} ${href} ${text}`;
+      }))
+      .catch((err) => console.log(err));
+  }
 }
 // --------------------------- Si se coloca ruta y una opcion ------------------------//
 
@@ -106,6 +110,8 @@ if (args.length === 3) {
 // ---------------------------- archivos md ------------------------------- //
 // C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\file.md
 // C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator.md
+// C:\\Users\\user\\Desktop\\LABORATORIA\\
+// LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md
 // ---------------------------- directorio ------------------------------- //
 // C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator_duplicated
 // C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator
