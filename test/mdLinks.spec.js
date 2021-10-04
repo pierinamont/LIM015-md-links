@@ -1,6 +1,7 @@
 // const mdLinks = require('../');
 import mdLinks from '../src/mdLinks.js';
 
+const nullPath = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validatorTwo.md';
 const path = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\validatorTwo.md';
 const validateFalse = [
   {
@@ -53,6 +54,9 @@ describe('mdLinks', () => {
   });
   it('validate true: debe retornar href, text, file, status', () => {
     expect(mdLinks(path, { validate: true })).resolves.toEqual(validateTrue);
+  });
+  it('mensaje de error si no existe path', () => {
+    expect(mdLinks(nullPath, { validate: true })).rejects.toEqual('Path does not exist');
   });
 });
 // mdLinks(existingPath, { validate: true })
