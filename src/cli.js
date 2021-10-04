@@ -34,7 +34,6 @@ if (args.length === 0) {
 if (args.length === 1) {
   mdLinks(args[0], { validate: false })
     .then((array) => array.map((element) => {
-    //   const msg = `${element.file} ${element.href} ${element.text}`;
       const file = chalk.bold.grey.bgWhite(element.file);
       const href = chalk.underline.cyan(element.href);
       const text = chalk.italic.magenta(element.text);
@@ -104,5 +103,9 @@ if (args.length === 3) {
 
 // Rutas de prueba
 
+// ---------------------------- archivos md ------------------------------- //
 // C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\file.md
 // C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\file.md
+// ---------------------------- directorio ------------------------------- //
+// C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator_duplicated
+// C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator

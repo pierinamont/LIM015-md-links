@@ -3,15 +3,17 @@ import * as api from './api.js';
 
 const mdLinks = (track, options = { validate: true }) => new Promise((resolve, reject) => {
   // Si el path no existe
-  if (!api.isAnExistingPath(track)) {
+  if (api.isAnExistingPath(track) === false) {
     reject((chalk.red('Path does not exist')));
     // Si validate es true
   } else if (options.validate) {
-    const links = api.getLinks(track); // bien
+    const getMd = api.getFilesFromDirectory(track);
+    const links = api.getLinks(...getMd);
     // resolve(api.validateLinks(links));
     api.validateLinks(links).then((result) => resolve(result)).catch((err) => reject(err));
   } else { // Si es validate false
-    resolve(api.getLinks(track));
+    const getMd = api.getFilesFromDirectory(track);
+    resolve(api.getLinks(...getMd));
   }
 });
 
