@@ -8,7 +8,24 @@ import { statsLinks, brokenLinks } from './stats.js';
 const [,, ...args] = process.argv;
 
 const helpTxt = 'Try using "--stats", "--validate" or both. If you need more help, use "--help".';
+const help = `
+**************************************************************************************************
+ ____ ____ ____ ____ ________
+||h |||e |||l |||p |||       |
+||__|||__|||__|||__|||_______|
+|/__/|/__/|/__/|/__/|/_______/
 
+The options are the following:
+
+1) '--validate' => To validate each link within the file, get file path, href, OK or FAIL message,
+                   link status and text.
+
+2) '--stats' => To get the total number of links and number of unique links.
+
+3) '--validate --stats' => To get the total number of links, number of unique links and broken links.
+
+*****************************************************************************************************
+`;
 // --------------------------- Si no se ingresa algo ------------------------//
 if (args.length === 0) {
   const msg = `
@@ -32,6 +49,7 @@ if (args.length === 0) {
 }
 // --------------------------- Si se coloca solo ruta ------------------------//
 if (args.length === 1) {
+  // FALTA AGREGAR HELP
   mdLinks(args[0], { validate: false })
     .then((array) => array.map((element) => {
       const file = chalk.bold.grey.bgWhite(element.file);
@@ -66,24 +84,6 @@ if (args.length === 2) {
       })
       .catch((err) => console.log(err));
   } else if (args[1] === '--help') {
-    const help = `
- **************************************************************************************************
-  ____ ____ ____ ____ ________
- ||h |||e |||l |||p |||       |
- ||__|||__|||__|||__|||_______|
- |/__/|/__/|/__/|/__/|/_______/
- 
- The options are the following:
-
- 1) '--validate' => To validate each link within the file, get file path, href, OK or FAIL message,
-                    link status and text.
-
- 2) '--stats' => To get the total number of links and number of unique links.
-
- 3) '--validate --stats' => To get the total number of links, number of unique links and broken links.
-
- *****************************************************************************************************
-`;
     console.log(chalk.magenta(help));
   } else {
     console.log(chalk.magenta(helpTxt));
@@ -105,7 +105,7 @@ if (args.length === 3) {
 
 // ---------------------------- archivos md ------------------------------- //
 // C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\file.md
-// C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\file.md
+// C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator.md
 // ---------------------------- directorio ------------------------------- //
 // C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator_duplicated
 // C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator

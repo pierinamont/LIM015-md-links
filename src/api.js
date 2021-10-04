@@ -49,6 +49,7 @@ export const getFilesFromDirectory = (track) => {
   return arrayFiles;
 };
 
+getFilesFromDirectory('C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator');
 // ----------------------- Para leer un archivo md -------------------------------- //
 export const readFileMd = (track) => readFileSync(track, 'utf8');
 
@@ -61,7 +62,6 @@ export const getLinks = (track) => {
     const completeRegex = /\[([\w\s\d.()]+)\]\(((?:\/|https?:\/\/)[\w\d./?=#&_%~,.:-]+)\)/mg;
     const regexLinks = /\(((?:\/|https?:\/\/)[\w\d./?=#&_%~,.:-]+)\)/mg;
     const regextext = /\[([\w\s\d.()]+)\]/g;
-
     const links = readFileMd(track).match(completeRegex);
     // Obtener links del archivo
     links.forEach((link) => {
@@ -72,18 +72,17 @@ export const getLinks = (track) => {
       arrayLinks.push({
         href: linksResolve,
         // Limitar texto
-        text: textResolve.slice(0, 49), // .substr(0, 50)
+        text: textResolve.substr(0, 50), // .substr(0, 50)
         file: track,
       });
     });
     return arrayLinks;
   }
   // prueba por eslint(Expected to return a value at the end of arrow function)
-  return true;
 };
-// const failLink = 'C:\\Users\\user\\Desktop\\
-// LABORATORIA\\LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md';
-// console.log(getLinks(failLink), 'getLinks');
+
+const failLink = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator.md';
+console.log(getLinks(failLink), 'getLinks');
 
 // ---------------------- Para ver si links son válidos ----------------------------- //
 // --------------------------- option validate: true ------------------------------ //
