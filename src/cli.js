@@ -51,7 +51,7 @@ if (args.length === 0) {
 // --------------------------- Si se coloca solo ruta ------------------------//
 if (args.length === 1) {
   if (args[0] === '--help') {
-    console.log(chalk.magenta(helpTxt));
+    console.log(chalk.magenta(help));
   } else {
     mdLinks(args[0], { validate: false })
       .then((array) => array.map((element) => {

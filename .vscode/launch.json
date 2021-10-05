@@ -12,7 +12,7 @@
                 "<node_internals>/**"
             ],
             "program": "${workspaceFolder}\\src\\cli.js",
-            "args": [ "C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator" ]
+            "args": [ "C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator.md" ]
         }
     ]
 }

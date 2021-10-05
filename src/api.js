@@ -69,7 +69,8 @@ export const getFilesFromDirectory = (track) => {
       }
     });
   }
-  console.log(arrayFiles);
+  // console.log(arrayFiles);
+  // console.log(arrayFiles, 'así termina arrayFiles');
   return arrayFiles;
 };
 getFilesFromDirectory('C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator');
@@ -142,7 +143,7 @@ export const validateLinks = (arraylinks) => {
 // const f = 'C:\\Users\\user\\Desktop\\
 // LABORATORIA\\LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md';
 
-// C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator.md
+// const f = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator.md';
 
 // const array = getLinks(f);
 // console.log(array, 'esto obtiene validatelinks');
