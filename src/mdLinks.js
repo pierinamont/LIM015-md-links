@@ -24,15 +24,31 @@ import * as api from './api.js';
 //   }
 // });
 
-const mdLinks = (path, options = {}) => new Promise((resolve, reject) => {
-  // validar que el path existe//
-  if (!api.isAnExistingPath(path)) {
-    const err = 'invalid path';
-    resolve(err);
-    reject('la ruta no existe, es invalida');
-    // extraer c/u de los links//
+// const mdLinks = (path, options = {}) => new Promise((resolve, reject) => {
+//   // validar que el path existe//
+//   if (!api.isAnExistingPath(path)) {
+//     const err = 'invalid path';
+//     resolve(err);
+//     reject('la ruta no existe, es invalida');
+//     // extraer c/u de los links//
+//   } else if (options.validate) {
+//     resolve(api.validateLinks(api.getLinks(path)));
+//   } else {
+//     resolve(api.getLinks(path));
+//   }
+// });
+
+const mdLinks = (track, options = { validate: true }) => new Promise((resolve, reject) => {
+  // convertir ruta en absoluta
+  const path = api.convertToAbsolute(track);
+  // Si el path no existe
+  if (api.isAnExistingPath(path) === false) {
+    reject((chalk.red('Path does not exist')));
+    // si options validate es true
   } else if (options.validate) {
-    resolve(api.validateLinks(api.getLinks(path)));
+    const validate = api.validateLinks(api.getLinks(path));
+    resolve(validate);
+    // si options validate es false
   } else {
     resolve(api.getLinks(path));
   }
