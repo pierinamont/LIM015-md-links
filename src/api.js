@@ -31,25 +31,49 @@ export const isMdExtension = (track) => {
 };
 
 // --------------------------- Para recorrer directorio  ------------------------------ //
+// export const getFilesFromDirectory = (track) => {
+//   let arrayFiles = [];
+//   // si es directorio
+//   if (isAdirectory(track)) {
+//     // recorrer archivos dentro
+//     readDirectory(track).forEach((file) => {
+//       const joinPath = path.join(track, file); // chequear
+//       // const resolvePath = path.resolve(joinPath); // ruta resuelta
+//       const directoryFiles = getFilesFromDirectory(joinPath);
+//       arrayFiles = arrayFiles.concat(directoryFiles);
+//       console.log(arrayFiles, 'SI ES DIRECTORIO');
+//     });
+//   } else if (isMdExtension(track)) { // si es archivo md
+//     // enpuje en un array los archivos md
+//     arrayFiles.push(track);
+//     console.log(arrayFiles.push(track), 'SI ES MD');
+//   }
+//   console.log(arrayFiles);
+//   return arrayFiles;
+// };
+
 export const getFilesFromDirectory = (track) => {
   let arrayFiles = [];
   // si es directorio
   if (isAdirectory(track)) {
     // recorrer archivos dentro
     readDirectory(track).forEach((file) => {
-      const joinPath = path.join(track, file); // chequear
+      const joinPath = path.join(track, file); // todas la ruta de archivos dentro de la carpeta
       // const resolvePath = path.resolve(joinPath); // ruta resuelta
-      const directoryFiles = getFilesFromDirectory(joinPath);
-      arrayFiles = arrayFiles.concat(directoryFiles);
+      if (isAdirectory(joinPath)) { // si la ruta es directorio
+        const directoryFiles = getFilesFromDirectory(joinPath);
+        arrayFiles = arrayFiles.concat(directoryFiles); // array con archivos md dentro de carpeta
+      } else if (isMdExtension(joinPath)) { // si es archivo md
+        // enpuje en un array los archivos md
+        arrayFiles.push(joinPath);
+      }
     });
-  } else if (isMdExtension(track)) { // si es archivo md
-    // enpuje en un array los archivos md
-    arrayFiles.push(track);
   }
+  console.log(arrayFiles);
   return arrayFiles;
 };
-
 getFilesFromDirectory('C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator');
+
 // ----------------------- Para leer un archivo md -------------------------------- //
 export const readFileMd = (track) => readFileSync(track, 'utf8');
 
