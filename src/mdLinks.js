@@ -10,7 +10,7 @@ const mdLinks = (track, options = { validate: true }) => new Promise((resolve, r
     // si options validate es true
   } else if (options.validate) {
     const validate = api.validateLinks(api.getLinks(path));
-    resolve(Promise.all(validate));
+    resolve(validate);
     // si options validate es false
   } else {
     resolve(api.getLinks(path));
