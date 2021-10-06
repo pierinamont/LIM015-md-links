@@ -1,7 +1,7 @@
 // const mdLinks = require('../');
 import mdLinks from '../src/mdLinks.js';
 
-const nullPath = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validatorTwo.md';
+const nullPath = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validatorTwo.m';
 const path = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\validatorTwo.md';
 const validateFalse = [
   {

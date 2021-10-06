@@ -34,7 +34,6 @@ export const isMdExtension = (track) => {
 export const getFilesFromDirectory = (track) => {
   let arrayFiles = [];
   // si es directorio
-  // isAbsolutePath(track);
   if (isAdirectory(track)) {
     // recorrer archivos dentro
     readDirectory(track).forEach((file) => {
@@ -46,8 +45,6 @@ export const getFilesFromDirectory = (track) => {
     // enpuje en un array los archivos md
     arrayFiles.push(track);
   }
-  // console.log(arrayFiles);
-  // console.log(arrayFiles, 'así termina arrayFiles');
   return arrayFiles;
 };
 // console.log(getFilesFromDirectory('C:\\Users\\user\\Desktop\\
