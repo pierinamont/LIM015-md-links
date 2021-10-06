@@ -31,69 +31,45 @@ export const isMdExtension = (track) => {
 };
 
 // --------------------------- Para recorrer directorio  ------------------------------ //
-// export const getFilesFromDirectory = (track) => {
-//   let arrayFiles = [];
-//   // si es directorio
-//   if (isAdirectory(track)) {
-//     // recorrer archivos dentro
-//     readDirectory(track).forEach((file) => {
-//       const joinPath = path.join(track, file); // chequear
-//       // const resolvePath = path.resolve(joinPath); // ruta resuelta
-//       const directoryFiles = getFilesFromDirectory(joinPath);
-//       arrayFiles = arrayFiles.concat(directoryFiles);
-//       console.log(arrayFiles, 'SI ES DIRECTORIO');
-//     });
-//   } else if (isMdExtension(track)) { // si es archivo md
-//     // enpuje en un array los archivos md
-//     arrayFiles.push(track);
-//     console.log(arrayFiles.push(track), 'SI ES MD');
-//   }
-//   console.log(arrayFiles);
-//   return arrayFiles;
-// };
-
 export const getFilesFromDirectory = (track) => {
   let arrayFiles = [];
   // si es directorio
+  // isAbsolutePath(track);
   if (isAdirectory(track)) {
     // recorrer archivos dentro
     readDirectory(track).forEach((file) => {
       const joinPath = path.join(track, file); // todas la ruta de archivos dentro de la carpeta
-      // const resolvePath = path.resolve(joinPath); // ruta resuelta
-      if (isAdirectory(joinPath)) { // si la ruta es directorio
-        const directoryFiles = getFilesFromDirectory(joinPath);
-        arrayFiles = arrayFiles.concat(directoryFiles); // array con archivos md dentro de carpeta
-      } else if (isMdExtension(joinPath)) { // si es archivo md
-        // enpuje en un array los archivos md
-        arrayFiles.push(joinPath);
-      }
+      const resolvePath = getFilesFromDirectory(path.resolve(joinPath));
+      arrayFiles = arrayFiles.concat(resolvePath);
     });
+  } else if (isMdExtension(track)) { // si es archivo md
+    // enpuje en un array los archivos md
+    arrayFiles.push(track);
   }
   // console.log(arrayFiles);
   // console.log(arrayFiles, 'así termina arrayFiles');
   return arrayFiles;
 };
-getFilesFromDirectory('C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator');
-
+// console.log(getFilesFromDirectory('C:\\Users\\user\\Desktop\\
+// LABORATORIA\\LIM015-md-links\\validator\\validator.md'));
 // ----------------------- Para leer un archivo md -------------------------------- //
 export const readFileMd = (track) => readFileSync(track, 'utf8');
 
 // --------------------------- Para extraer links en un array ------------------------------ //
 // --------------------------- option validate: false ------------------------------ //
 export const getLinks = (track) => {
-  // Si es una extensión md
-  if (isMdExtension(track)) {
-    const arrayLinks = [];
+  const getFilesFromDir = getFilesFromDirectory(track);
+  const arrayLinks = [];
+  getFilesFromDir.forEach((element) => {
     const completeRegex = /\[([\w\s\d.()]+)\]\(((?:\/|https?:\/\/)[\w\d./?=#&_%~,.:-]+)\)/mg;
     const regexLinks = /\(((?:\/|https?:\/\/)[\w\d./?=#&_%~,.:-]+)\)/mg;
     const regextext = /\[([\w\s\d.()]+)\]/g;
-    const links = readFileMd(track).match(completeRegex);
-    // Obtener links del archivo
-    links.forEach((link) => {
-      // Quitar los los paréntesis
-      const linksResolve = link.match(regexLinks).join().slice(1, -1);
+    const links = readFileMd(element).match(completeRegex);
+    // console.log(links, 5);
+    links.forEach((e) => {
+      const linksResolve = e.match(regexLinks).join().slice(1, -1);
       // Quitar los los corchetes
-      const textResolve = link.match(regextext).join().slice(1, -1);
+      const textResolve = e.match(regextext).join().slice(1, -1);
       arrayLinks.push({
         href: linksResolve,
         // Limitar texto
@@ -101,21 +77,20 @@ export const getLinks = (track) => {
         file: track,
       });
     });
-    return arrayLinks;
-  }
-  return getLinks; // prueba
+  });
+  // console.log(arrayLinks, 20);
+  return arrayLinks;
 };
 
-// const failLink = 'C:\\Users\\user\\Desktop\\
-// LABORATORIA\\LIM015-md-links\\validator\\validator.md';
-// console.log(getLinks(failLink), 'getLinks con la prueba');
+// // const failLink = 'C:\\Users\\user\\Desktop\\
+// getLinks('C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator.md');
 
 // ---------------------- Para ver si links son válidos ----------------------------- //
 // --------------------------- option validate: true ------------------------------ //
-export const validateLinks = (arrays) => {
+export const validateLinks = (arraylinks) => {
   // Recorrer el obj de arrays que nos brinda 'getLinks'
   // console.log(arrays, 1);
-  const array = arrays.map((element) => {
+  const array = arraylinks.map((element) => {
     // Acceder al href del objeto
     const fetchPromise = fetch(element.href)
       .then((result) => ({
@@ -135,7 +110,7 @@ export const validateLinks = (arrays) => {
     // retornar la promesa
     return fetchPromise;
   });
-  console.log(array, 2);
+  // console.log(array, 'promesa')
   // retornar el array con la promesa resuelta
   return Promise.all(array);
 };
@@ -144,6 +119,6 @@ export const validateLinks = (arrays) => {
 // const f = 'C:\\Users\\user\\Desktop\\
 // LABORATORIA\\LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md';
 
-const saveArray = getLinks('C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator');
-// console.log(array, 'esto obtiene validatelinks');
-validateLinks(saveArray);
+// const saveArray = getLinks('C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator');
+// // console.log(array, 'esto obtiene validatelinks');
+// validateLinks(saveArray);
