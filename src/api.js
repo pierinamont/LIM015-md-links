@@ -112,9 +112,10 @@ export const getLinks = (track) => {
 
 // ---------------------- Para ver si links son válidos ----------------------------- //
 // --------------------------- option validate: true ------------------------------ //
-export const validateLinks = (arraylinks) => {
+export const validateLinks = (arrays) => {
   // Recorrer el obj de arrays que nos brinda 'getLinks'
-  const array = arraylinks.map((element) => {
+  // console.log(arrays, 1);
+  const array = arrays.map((element) => {
     // Acceder al href del objeto
     const fetchPromise = fetch(element.href)
       .then((result) => ({
@@ -134,7 +135,7 @@ export const validateLinks = (arraylinks) => {
     // retornar la promesa
     return fetchPromise;
   });
-  // console.log(array, 'promesa')
+  console.log(array, 2);
   // retornar el array con la promesa resuelta
   return Promise.all(array);
 };
@@ -143,8 +144,6 @@ export const validateLinks = (arraylinks) => {
 // const f = 'C:\\Users\\user\\Desktop\\
 // LABORATORIA\\LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md';
 
-// const f = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator.md';
-
-// const array = getLinks(f);
+const saveArray = getLinks('C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator');
 // console.log(array, 'esto obtiene validatelinks');
-// validateLinks(array).then((result) => console.log(result, 'función validateLinks'));
+validateLinks(saveArray);

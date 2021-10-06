@@ -20,9 +20,9 @@ The options are the following:
 1) '--validate' => To validate each link within the file, get file path, href, OK or FAIL message,
                    link status and text.
 
-2) '--stats' => To get the total number of links and number of unique links.
+2) '--stats' => To get the total number of links and unique links.
 
-3) '--validate --stats' => To get the total number of links, number of unique links and broken links.
+3) '--validate --stats' => To get the total number of links, unique links and broken links.
 
 *****************************************************************************************************
 `;
@@ -102,6 +102,8 @@ if (args.length === 3) {
         console.log(`${statsLinks(array)}\n${brokenLinks(array)}`);
       })
       .catch((err) => console.log(err));
+  } else {
+    console.log(chalk.magenta(helpTxt));
   }
 }
 
