@@ -1,8 +1,6 @@
-import pkg from '@jest/globals';
-import fetch from '../__mocks__/fetch-mock.js';
-import { validateLinks } from '../src/api.js';
+import fetch from 'node-fetch';
+import { validateLinks } from '../src/api';
 
-const { jest } = pkg;
 jest.mock('node-fetch'); // prueba
 
 // jest.mock('node-fetch', () => jest.fn());
