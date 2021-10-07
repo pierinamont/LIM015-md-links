@@ -17,15 +17,5 @@ const mdLinks = (track, options = { validate: true }) => new Promise((resolve, r
   }
 });
 
-// prueba
-// const existingPath = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator';
-// mdLinks('../validator', { validate: false })
-//   .then((result) => {
-//     console.log(result, 'este es el resultado');
-//   })
-//   .catch((error) => {
-//     console.log(error, 'este es un error');
-//   });
-
 // export default mdLinks;
 module.exports = { mdLinks };

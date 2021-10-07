@@ -21,33 +21,3 @@ const brokenLinks = (array) => {
 };
 
 module.exports = { statsLinks, brokenLinks };
-// const prueba = [
-//   {
-//     href: 'https://nodejs.org/',
-//     text: 'Node.js',
-//     file: 'C:\\Users\\user\\Desktop\\LABORATORIA\\
-// LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md',
-//     status: 200,
-//     statusText: 'Ok',
-//   },
-//   {
-//     href: 'https://es.wikipedia.oi/Markdown',
-//     text: 'Markdown',
-//     file: 'C:\\Users\\user\\Desktop\\LABORATORIA\\
-// LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md',
-//     status: 'Failed request',
-//     statusText: 'Fail',
-//   },
-//   {
-//     href: 'https://nodej/',
-//     text: 'Link roto',
-//     file: 'C:\\Users\\user\\Desktop\\LABORATORIA\\
-// LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md',
-//     status: 'Failed request',
-//     statusText: 'Fail',
-//   },
-// ];
-
-// console.log(statsLinks(prueba));
-
-// console.log(brokenLinks(prueba));

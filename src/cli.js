@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const chalk = require('chalk');
-const mdLinks = require('./mdLinks.js');
+const md = require('./mdLinks.js');
 const { statsLinks, brokenLinks } = require('./stats.js');
 // Para poder usar argumentos
 const [,, ...args] = process.argv;
@@ -52,7 +52,7 @@ if (args.length === 1) {
   if (args[0] === '--help') {
     console.log(chalk.magenta(help));
   } else {
-    mdLinks(args[0], { validate: false })
+    md.mdLinks(args[0], { validate: false })
       .then((array) => array.map((element) => {
         const file = chalk.bold.grey.bgWhite(element.file);
         const href = chalk.underline.cyan(element.href);
@@ -68,7 +68,7 @@ if (args.length === 1) {
 
 if (args.length === 2) {
   if (args[1] === '--validate') {
-    mdLinks(args[0], { validate: true })
+    md.mdLinks(args[0], { validate: true })
       .then((array) => array.map((element) => {
         const file = chalk.bold.grey.bgWhite(element.file);
         const href = chalk.underline.cyan(element.href);
@@ -81,7 +81,7 @@ if (args.length === 2) {
       }))
       .catch((err) => console.log(err));
   } else if (args[1] === '--stats') {
-    mdLinks(args[0], { validate: true })
+    md.mdLinks(args[0], { validate: true })
       .then((array) => {
         console.log(statsLinks(array));
       })
@@ -96,7 +96,7 @@ if (args.length === 2) {
 // --------------------------- Si se coloca ruta y dos opciones ------------------------//
 if (args.length === 3) {
   if ((args[1] === '--validate' && args[2] === '--stats') || (args[1] === '--stats' && args[2] === '--validate')) {
-    mdLinks(args[0], { validate: true })
+    md.mdLinks(args[0], { validate: true })
       .then((array) => {
         console.log(`${statsLinks(array)}\n${brokenLinks(array)}`);
       })
@@ -107,7 +107,6 @@ if (args.length === 3) {
 }
 
 // Rutas de prueba
-
 // ---------------------------- archivos md ------------------------------- //
 // C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\file.md
 // C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator.md

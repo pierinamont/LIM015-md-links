@@ -1,11 +1,3 @@
-// import { FLIPPED_ALIAS_KEYS } from '@babel/types';
-// import {
-//   isAnExistingPath, isAbsolutePath,
-//   convertToAbsolute, isAdirectory, isMdExtension,
-//   readDirectory, readFileMd, getFilesFromDirectory,
-//   getLinks,
-// } from '../src/api.js';
-
 const api = require('../src/api.js');
 
 // constantes
@@ -151,6 +143,3 @@ describe('getLinks', () => {
     expect(api.getLinks(mdFile)).toEqual(content);
   });
 });
-
-// console.log(fetch, 'fetch');
-// console.log(fetchMock, 'fetchMock');

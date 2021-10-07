@@ -1,9 +1,7 @@
 const fetch = require('node-fetch');
 const api = require('../src/api.js');
 
-jest.mock('node-fetch'); // prueba
-
-// jest.mock('node-fetch', () => jest.fn());
+jest.mock('node-fetch');
 
 describe('validateLinks', () => {
   test('statusText: OK', () => {

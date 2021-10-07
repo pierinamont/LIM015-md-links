@@ -1,5 +1,3 @@
-// const mdLinks = require('../');
-// import mdLinks from '../src/mdLinks.js';
 const md = require('../src/mdLinks.js');
 
 const nullPath = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validatorTwo.m';
@@ -60,10 +58,3 @@ describe('mdLinks', () => {
     expect(md.mdLinks(nullPath, { validate: true })).rejects.toEqual('Path does not exist');
   });
 });
-// mdLinks(existingPath, { validate: true })
-//   .then((result) => {
-//     console.log(result, 'este es el resultado');
-//   })
-//   .catch((error) => {
-//     console.log(error, 'este es un error');
-//   });

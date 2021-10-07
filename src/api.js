@@ -1,7 +1,3 @@
-// import {
-//   existsSync, statSync, readFileSync, readdirSync,
-// } from 'fs';
-
 const fs = require('fs');
 
 const path = require('path');
@@ -49,8 +45,7 @@ const getFilesFromDirectory = (track) => {
   }
   return arrayFiles;
 };
-// console.log(getFilesFromDirectory('C:\\Users\\user\\Desktop\\
-// LABORATORIA\\LIM015-md-links\\validator\\validator.md'));
+
 // ----------------------- Para leer un archivo md -------------------------------- //
 const readFileMd = (track) => fs.readFileSync(track, 'utf8');
 
@@ -81,9 +76,6 @@ const getLinks = (track) => {
   return arrayLinks;
 };
 
-// // const failLink = 'C:\\Users\\user\\Desktop\\
-// getLinks('C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator.md');
-
 // ---------------------- Para ver si links son válidos ----------------------------- //
 // --------------------------- option validate: true ------------------------------ //
 const validateLinks = (arraylinks) => {
@@ -109,18 +101,9 @@ const validateLinks = (arraylinks) => {
     // retornar la promesa
     return fetchPromise;
   });
-  // console.log(array, 'promesa')
   // retornar el array con la promesa resuelta
   return Promise.all(array);
 };
-
-// prueba
-// const f = 'C:\\Users\\user\\Desktop\\
-// LABORATORIA\\LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md';
-
-// const saveArray = getLinks('C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator');
-// // console.log(array, 'esto obtiene validatelinks');
-// validateLinks(saveArray);
 
 module.exports = {
   isAnExistingPath,
