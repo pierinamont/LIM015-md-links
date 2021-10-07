@@ -1,5 +1,5 @@
-import chalk from 'chalk';
-import { statsLinks, brokenLinks } from '../src/stats.js';
+const chalk = require('chalk');
+const opt = require('../src/stats.js');
 
 const stats = [
   {
@@ -27,23 +27,23 @@ const stats = [
 
 describe('statsLinks', () => {
   it('Debe ser una función', () => {
-    expect(typeof statsLinks).toBe('function');
+    expect(typeof opt.statsLinks).toBe('function');
   });
   it('Debe imprimir el total de links y los únicos', () => {
     const total = chalk.green('Total: 3');
     const unique = chalk.blue('Unique: 3');
     const content = `${total}\n${unique}`;
-    expect(statsLinks(stats)).toBe(content);
+    expect(opt.statsLinks(stats)).toBe(content);
   });
 });
 
 describe('brokenLinks', () => {
   it('Debe ser una función', () => {
-    expect(typeof brokenLinks).toBe('function');
+    expect(typeof opt.brokenLinks).toBe('function');
   });
   it('Debe imprimir el total de links rotos', () => {
     const broken = chalk.red('Broken: 2');
     const content = broken;
-    expect(brokenLinks(stats)).toBe(content);
+    expect(opt.brokenLinks(stats)).toBe(content);
   });
 });

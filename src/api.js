@@ -1,28 +1,30 @@
-// import { SSL_OP_MICROSOFT_SESS_ID_BUG } from 'constants';
-import {
-  existsSync, statSync, readFileSync, readdirSync,
-} from 'fs';
-import * as path from 'path';
+// import {
+//   existsSync, statSync, readFileSync, readdirSync,
+// } from 'fs';
 
-import fetch from 'node-fetch';
+const fs = require('fs');
+
+const path = require('path');
+
+const fetch = require('node-fetch');
 
 // ---------------------- Para saber si el path existe ----------------------------- //
-export const isAnExistingPath = (track) => existsSync(track); // true o false
+const isAnExistingPath = (track) => fs.existsSync(track); // true o false
 
 // -------------------- Para saber si el path es absoluto -------------------------- //
-export const isAbsolutePath = (track) => path.isAbsolute(track); // true o false
+const isAbsolutePath = (track) => path.isAbsolute(track); // true o false
 
 // --------------------- Para convertir el path en absoluto ------------------------ //
-export const convertToAbsolute = (track) => path.resolve(track);
+const convertToAbsolute = (track) => path.resolve(track);
 
 // --------------------- Para saber si el path es un directorio -------------------- //
-export const isAdirectory = (track) => statSync(track).isDirectory();
+const isAdirectory = (track) => fs.statSync(track).isDirectory();
 
 // --------------------------- Para leer un directorio ------------------------------ //
-export const readDirectory = (track) => readdirSync(track);
+const readDirectory = (track) => fs.readdirSync(track);
 
 // --------------------- Para validar si es una extensión de un archivo md -------------------- //
-export const isMdExtension = (track) => {
+const isMdExtension = (track) => {
   const extension = path.extname(track);
   if (extension === '.md') {
     return true;
@@ -31,7 +33,7 @@ export const isMdExtension = (track) => {
 };
 
 // --------------------------- Para recorrer directorio  ------------------------------ //
-export const getFilesFromDirectory = (track) => {
+const getFilesFromDirectory = (track) => {
   let arrayFiles = [];
   // si es directorio
   if (isAdirectory(track)) {
@@ -50,11 +52,11 @@ export const getFilesFromDirectory = (track) => {
 // console.log(getFilesFromDirectory('C:\\Users\\user\\Desktop\\
 // LABORATORIA\\LIM015-md-links\\validator\\validator.md'));
 // ----------------------- Para leer un archivo md -------------------------------- //
-export const readFileMd = (track) => readFileSync(track, 'utf8');
+const readFileMd = (track) => fs.readFileSync(track, 'utf8');
 
 // --------------------------- Para extraer links en un array ------------------------------ //
 // --------------------------- option validate: false ------------------------------ //
-export const getLinks = (track) => {
+const getLinks = (track) => {
   const getFilesFromDir = getFilesFromDirectory(track);
   const arrayLinks = [];
   getFilesFromDir.forEach((element) => {
@@ -84,7 +86,7 @@ export const getLinks = (track) => {
 
 // ---------------------- Para ver si links son válidos ----------------------------- //
 // --------------------------- option validate: true ------------------------------ //
-export const validateLinks = (arraylinks) => {
+const validateLinks = (arraylinks) => {
   // Recorrer el obj de arrays que nos brinda 'getLinks'
   // console.log(arrays, 1);
   const array = arraylinks.map((element) => {
@@ -119,3 +121,16 @@ export const validateLinks = (arraylinks) => {
 // const saveArray = getLinks('C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator');
 // // console.log(array, 'esto obtiene validatelinks');
 // validateLinks(saveArray);
+
+module.exports = {
+  isAnExistingPath,
+  isAbsolutePath,
+  convertToAbsolute,
+  isAdirectory,
+  readDirectory,
+  isMdExtension,
+  getFilesFromDirectory,
+  readFileMd,
+  getLinks,
+  validateLinks,
+};

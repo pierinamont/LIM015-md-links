@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 
-import chalk from 'chalk'; // para añadir color al texto
-import mdLinks from './mdLinks.js';
-import { statsLinks, brokenLinks } from './stats.js';
-
+const chalk = require('chalk');
+const mdLinks = require('./mdLinks.js');
+const { statsLinks, brokenLinks } = require('./stats.js');
 // Para poder usar argumentos
 const [,, ...args] = process.argv;
 

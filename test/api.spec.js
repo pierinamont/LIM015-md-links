@@ -1,10 +1,12 @@
 // import { FLIPPED_ALIAS_KEYS } from '@babel/types';
-import {
-  isAnExistingPath, isAbsolutePath,
-  convertToAbsolute, isAdirectory, isMdExtension,
-  readDirectory, readFileMd, getFilesFromDirectory,
-  getLinks,
-} from '../src/api.js';
+// import {
+//   isAnExistingPath, isAbsolutePath,
+//   convertToAbsolute, isAdirectory, isMdExtension,
+//   readDirectory, readFileMd, getFilesFromDirectory,
+//   getLinks,
+// } from '../src/api.js';
+
+const api = require('../src/api.js');
 
 // constantes
 const track = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator';
@@ -26,107 +28,107 @@ const filePath = [
 // -------------------------- valida si ruta existe ----------------------------- //
 describe('isAnExistingPath', () => {
   it('Debe ser una función', () => {
-    expect(typeof isAnExistingPath).toBe('function');
+    expect(typeof api.isAnExistingPath).toBe('function');
   });
   it('Debe validar si el path existe', () => {
-    expect(isAnExistingPath(track)).toBe(true);
+    expect(api.isAnExistingPath(track)).toBe(true);
   });
   it('Debe validar si el path no existe', () => {
-    expect(isAnExistingPath(failTrack)).toBe(false);
+    expect(api.isAnExistingPath(failTrack)).toBe(false);
   });
 });
 
 // -------------------------- valida si ruta es absoluta ----------------------------- //
 describe('isAbsolutePath', () => {
   it('Debe ser una función', () => {
-    expect(typeof isAbsolutePath).toBe('function');
+    expect(typeof api.isAbsolutePath).toBe('function');
   });
   it('Debe validar que el path es absoluto', () => {
-    expect(isAbsolutePath(track)).toBe(true);
+    expect(api.isAbsolutePath(track)).toBe(true);
   });
   it('Debe validar que el path no es absoluto', () => {
-    expect(isAbsolutePath(failTrack)).toBe(false);
+    expect(api.isAbsolutePath(failTrack)).toBe(false);
   });
 });
 
 // -------------------------- convierte ruta en absoluta ----------------------------- //
 describe('convertToAbsolute', () => {
   it('Debe ser una función', () => {
-    expect(typeof convertToAbsolute).toBe('function');
+    expect(typeof api.convertToAbsolute).toBe('function');
   });
   it('Debe convertir ruta a absoluta', () => {
     const content = 'C:\\Users\\user\\Desktop\\LABORATORIA\\validator\\validator.md';
-    expect(convertToAbsolute(failTrack)).toEqual(content);
+    expect(api.convertToAbsolute(failTrack)).toEqual(content);
   });
 });
 
 // -------------------------- valida si es directorio ----------------------------- //
 describe('isAdirectory', () => {
   it('Debe ser una función', () => {
-    expect(typeof isAdirectory).toBe('function');
+    expect(typeof api.isAdirectory).toBe('function');
   });
   it('Debe validar si el path es un directorio', () => {
-    expect(isAdirectory(directory)).toBe(true);
+    expect(api.isAdirectory(directory)).toBe(true);
   });
 
   it('Debe validar si el path es un directorio', () => {
-    expect(isAdirectory(justFile)).toBe(false);
+    expect(api.isAdirectory(justFile)).toBe(false);
   });
 });
 
 // ------------------------------ lee un directorio ------------------------------- //
 describe('readDirectory', () => {
   it('Debe ser una función', () => {
-    expect(typeof readDirectory).toBe('function');
+    expect(typeof api.readDirectory).toBe('function');
   });
   it('Debe validar si el path es un directorio', () => {
     const content = ['file.md', 'validator.md', 'validator_duplicated'];
-    expect(readDirectory(track)).toEqual(content);
+    expect(api.readDirectory(track)).toEqual(content);
   });
 });
 
 // --------------- recorre un directorio (obtiene archivos de directorio) ----------- //
 describe('getFilesFromDirectory', () => {
   it('Debe ser una función', () => {
-    expect(typeof getFilesFromDirectory).toBe('function');
+    expect(typeof api.getFilesFromDirectory).toBe('function');
   });
   it('Debe retornar array con contenido del directorio', () => {
-    expect(getFilesFromDirectory(directory)).toEqual(dirArray);
+    expect(api.getFilesFromDirectory(directory)).toEqual(dirArray);
   });
   it('Debe retornar array con la ruta del archivo', () => {
-    expect(getFilesFromDirectory(justFile)).toEqual(filePath);
+    expect(api.getFilesFromDirectory(justFile)).toEqual(filePath);
   });
 });
 
 // -------------------------- valida si extensión es md ---------------------------- //
 describe('isMdExtension', () => {
   it('Debe ser una función', () => {
-    expect(typeof isMdExtension).toBe('function');
+    expect(typeof api.isMdExtension).toBe('function');
   });
   it('Debe validar que es un archivo .md', () => {
-    expect(isMdExtension(justFile)).toBe(true);
+    expect(api.isMdExtension(justFile)).toBe(true);
   });
 
   it('Debe validar que no es archivo .md', () => {
-    expect(isMdExtension(directory)).toBe(false);
+    expect(api.isMdExtension(directory)).toBe(false);
   });
 });
 
 // --------------------------------- lee un archivo ----------------------------------- //
 describe('readFileMd', () => {
   it('Debe ser una función', () => {
-    expect(typeof readFileMd).toBe('function');
+    expect(typeof api.readFileMd).toBe('function');
   });
   it('Debe validar si el path es un directorio', () => {
     const content = '[Markdown](https://es.wikipedia.org/wiki/Markdown) es un lenguaje de marcado';
-    expect(readFileMd(justFile)).toEqual(content);
+    expect(api.readFileMd(justFile)).toEqual(content);
   });
 });
 
 // -------------------------- extraer links en un array ----------------------------- //
 describe('getLinks', () => {
   it('Debe ser una función', () => {
-    expect(typeof getLinks).toBe('function');
+    expect(typeof api.getLinks).toBe('function');
   });
   it('retornar un array con href, txt, file', () => {
     const content = [
@@ -146,7 +148,7 @@ describe('getLinks', () => {
         file: 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\validatorTwo.md',
       },
     ];
-    expect(getLinks(mdFile)).toEqual(content);
+    expect(api.getLinks(mdFile)).toEqual(content);
   });
 });
 

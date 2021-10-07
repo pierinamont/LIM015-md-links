@@ -1,11 +1,11 @@
-import fetch from 'node-fetch';
-import { validateLinks } from '../src/api';
+const fetch = require('node-fetch');
+const api = require('../src/api.js');
 
 jest.mock('node-fetch'); // prueba
 
 // jest.mock('node-fetch', () => jest.fn());
 
-it('validateLinks', () => {
+describe('validateLinks', () => {
   test('statusText: OK', () => {
     const objRecieved = [
       {
@@ -27,7 +27,36 @@ it('validateLinks', () => {
       status: 200,
       statusText: 'OK',
     }));
-    return validateLinks(objRecieved)
+    return api.validateLinks(objRecieved)
+      .then((result) => {
+        expect(result).toEqual(objResolved);
+      });
+  });
+});
+
+describe('validateLinks', () => {
+  test('statusText: Fail', () => {
+    const objRecieved = [
+      {
+        href: 'https://es.wikiped/Markdown',
+        text: 'Markdown',
+        file: 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\file.md',
+      },
+    ];
+    const objResolved = [
+      {
+        href: 'https://es.wikiped/Markdown',
+        text: 'Markdown',
+        file: 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\file.md',
+        status: 'Failed request',
+        statusText: 'Fail',
+      },
+    ];
+    fetch.mockImplementation(() => Promise.reject(new Error({
+      status: 'Failed request',
+      statusText: 'Fail',
+    })));
+    return api.validateLinks(objRecieved)
       .then((result) => {
         expect(result).toEqual(objResolved);
       });

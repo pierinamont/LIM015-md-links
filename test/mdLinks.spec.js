@@ -1,5 +1,6 @@
 // const mdLinks = require('../');
-import mdLinks from '../src/mdLinks.js';
+// import mdLinks from '../src/mdLinks.js';
+const md = require('../src/mdLinks.js');
 
 const nullPath = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validatorTwo.m';
 const path = 'C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-MD-LINKS\\validator\\validator_duplicated\\validatorTwo.md';
@@ -47,16 +48,16 @@ const validateTrue = [
 
 describe('mdLinks', () => {
   it('debe ser una función ', () => {
-    expect(typeof mdLinks).toBe('function');
+    expect(typeof md.mdLinks).toBe('function');
   });
   it('validate false: debe retornar href, text, file', () => {
-    expect(mdLinks(path, { validate: false })).resolves.toEqual(validateFalse);
+    expect(md.mdLinks(path, { validate: false })).resolves.toEqual(validateFalse);
   });
   it('validate true: debe retornar href, text, file, status', () => {
-    expect(mdLinks(path, { validate: true })).resolves.toEqual(validateTrue);
+    expect(md.mdLinks(path, { validate: true })).resolves.toEqual(validateTrue);
   });
   it('mensaje de error si no existe path', () => {
-    expect(mdLinks(nullPath, { validate: true })).rejects.toEqual('Path does not exist');
+    expect(md.mdLinks(nullPath, { validate: true })).rejects.toEqual('Path does not exist');
   });
 });
 // mdLinks(existingPath, { validate: true })

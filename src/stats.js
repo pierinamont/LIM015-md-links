@@ -1,7 +1,7 @@
-import chalk from 'chalk';
+const chalk = require('chalk');
 
 // Status de links: totaL / unique
-export const statsLinks = (array) => {
+const statsLinks = (array) => {
   // total de links
   const total = array.length;
   let unique = array.map((link) => link.href);
@@ -14,12 +14,13 @@ export const statsLinks = (array) => {
 };
 
 // Obtener links rotos
-export const brokenLinks = (array) => {
+const brokenLinks = (array) => {
   const broken = array.filter((link) => link.statusText === 'Fail');
   const brokenMsg = chalk.red(`Broken: ${broken.length}`);
   return `${brokenMsg}`;
 };
 
+module.exports = { statsLinks, brokenLinks };
 // const prueba = [
 //   {
 //     href: 'https://nodejs.org/',

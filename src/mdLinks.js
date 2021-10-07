@@ -1,5 +1,5 @@
-import chalk from 'chalk'; // para añadir color al texto
-import * as api from './api.js';
+const chalk = require('chalk');
+const api = require('./api.js');
 
 const mdLinks = (track, options = { validate: true }) => new Promise((resolve, reject) => {
   // convertir ruta en absoluta
@@ -27,4 +27,5 @@ const mdLinks = (track, options = { validate: true }) => new Promise((resolve, r
 //     console.log(error, 'este es un error');
 //   });
 
-export default mdLinks;
+// export default mdLinks;
+module.exports = { mdLinks };
