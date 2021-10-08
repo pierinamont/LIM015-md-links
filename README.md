@@ -1,4 +1,4 @@
-# mdlinks-examiner
+# mdlinks-checker
 Es una librería que permite validar las URLs que se encuentran dentro de archivos con lenguaje markdown. Esta te permitirá obtener: status de los links, total de links, links únicos y links rotos.
 
 Este proyecto fue creado para el Bootcamp de  <a  href="https://www.laboratoria.la">Laboratoria</a> - Lima 015 💛
@@ -10,7 +10,7 @@ Este proyecto fue creado para el Bootcamp de  <a  href="https://www.laboratoria.
 
 Puedes instalarlo por npm:
 
-`$ npm i mdlinks-examiner`
+`$ npm i mdlinks-checker`
 
 ## Guía de uso
 
