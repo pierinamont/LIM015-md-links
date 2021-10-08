@@ -52,4 +52,6 @@ Si no recuerdas las opciones, puedes colocar `--help` para volver a chequear las
 ***
 ## Diagramas
 
-[![DIAGRAMAS.png](https://i.postimg.cc/Ss7h86zY/DIAGRAMAS.png)](https://postimg.cc/FdR8XJph)
+DIAGRAMA API y DIAGRAMA CLI
+
+[![DIAGRAMAS.png](https://i.postimg.cc/1zsMXDPj/DIAGRAMAS.png)](https://postimg.cc/sMH50QMY)
