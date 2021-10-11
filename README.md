@@ -16,7 +16,7 @@ Puedes instalarlo por npm:
 
 Puedes ejecutar la librería a través de la terminal:
 
-`mdlinks-examiner <path-to-file> [options]`
+`mdlinks-checker <path-to-file> [options]`
 
 Las rutas ingresadas pueden ser **relativas** o **absolutas** y las opciones que puedes usar son: `--stats`, `--validate`, o usar las dos juntas `--stats --validate`.
 
