@@ -35,8 +35,11 @@ const getFilesFromDirectory = (track) => {
   if (isAdirectory(track)) {
     // recorrer archivos dentro
     readDirectory(track).forEach((file) => {
-      const joinPath = path.join(track, file); // todas la ruta de archivos dentro de la carpeta
+      // une ruta con cada archivo => \\validator\\file.md
+      const joinPath = path.join(track, file);
+      // da una URL absoluta, y usará su directorio de trabajo como base para resolver la ruta
       const resolvePath = getFilesFromDirectory(path.resolve(joinPath));
+      // une todas las rutas encontradas en un array
       arrayFiles = arrayFiles.concat(resolvePath);
     });
   } else if (isMdExtension(track)) { // si es archivo md
@@ -45,7 +48,6 @@ const getFilesFromDirectory = (track) => {
   }
   return arrayFiles;
 };
-
 // ----------------------- Para leer un archivo md -------------------------------- //
 const readFileMd = (track) => fs.readFileSync(track, 'utf8');
 
@@ -58,16 +60,19 @@ const getLinks = (track) => {
     const completeRegex = /\[([\w\s\d.()]+)\]\(((?:\/|https?:\/\/)[\w\d./?=#&_%~,.:-]+)\)/mg;
     const regexLinks = /\(((?:\/|https?:\/\/)[\w\d./?=#&_%~,.:-]+)\)/mg;
     const regextext = /\[([\w\s\d.()]+)\]/g;
+    // Obtener texto y links => [texto](link)
     const links = readFileMd(element).match(completeRegex);
     // console.log(links, 5);
     links.forEach((e) => {
+      // unir los links y quitar paréntesis
       const linksResolve = e.match(regexLinks).join().slice(1, -1);
       // Quitar los los corchetes
       const textResolve = e.match(regextext).join().slice(1, -1);
+
       arrayLinks.push({
         href: linksResolve,
         // Limitar texto
-        text: textResolve.substr(0, 50), // .substr(0, 50)
+        text: textResolve.substr(0, 50),
         file: track,
       });
     });

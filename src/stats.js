@@ -6,6 +6,7 @@ const statsLinks = (array) => {
   const total = array.length;
   let unique = array.map((link) => link.href);
   // new Set se usa para obtener elementos únicos en un array
+  // ... para evitar que se cree otro []
   unique = [...new Set(unique)].length;
   // \n => salto de línea
   const totalMsg = chalk.green(`Total: ${total}`);

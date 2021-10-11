@@ -105,13 +105,3 @@ if (args.length === 3) {
     console.log(chalk.magenta(helpTxt));
   }
 }
-
-// Rutas de prueba
-// ---------------------------- archivos md ------------------------------- //
-// C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\file.md
-// C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator.md
-// C:\\Users\\user\\Desktop\\LABORATORIA\\
-// LIM015-md-links\\validator\\validator_duplicated\\validatorTwo.md
-// ---------------------------- directorio ------------------------------- //
-// C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator\\validator_duplicated
-// C:\\Users\\user\\Desktop\\LABORATORIA\\LIM015-md-links\\validator
